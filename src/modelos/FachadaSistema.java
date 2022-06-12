@@ -1,19 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package modelos;
 
 import java.util.ArrayList;
 import modelos.excepciones.LoginException;
 
-/**
- *
- * @author cferreri
- */
 public class FachadaSistema {
     
-    private SistemaMozo sMozo = SistemaMozo.getInsancia();
+    private SistemaMozo sMozo = SistemaMozo.getInstancia();
     private SistemaGestor sGestor = SistemaGestor.getInsancia();
     private static FachadaSistema instancia = new FachadaSistema();
     
@@ -57,7 +50,11 @@ public class FachadaSistema {
         this.sMozo.agregarMozo(mozo);
     }
     
-    
+        public void agregarGestor(UsuarioGestor gestor)
+    {
+        this.sGestor.agregarGestor(gestor);
+    }
+        
     public void agregarMesa(Mesa mesa){
         this.sMozo.agregarMesa(mesa);
     }

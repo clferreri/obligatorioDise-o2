@@ -14,15 +14,13 @@ public class Producto {
     private String nombre;
     private float precio;
     private int stock;
-    private UnidadesProcesadoras unidadProcesadora;
+    private UnidadProcesadora unidadProcesadora;
 
-
-    public Producto(String codigo, String nombre, float precio, int stock, UnidadesProcesadoras unidad)
-    {
-        this.codigo             = codigo;
-        this.nombre             = nombre;
-        this.precio             = precio;
-        this.stock              = stock;
-        this.unidadProcesadora  = unidad;
+    public Producto(String codigo, String nombre, float precio, int stock, UnidadProcesadora unidad) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+        this.unidadProcesadora = unidad;
     }
 }

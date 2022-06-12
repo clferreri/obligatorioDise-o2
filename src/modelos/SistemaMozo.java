@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package modelos;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author cferreri
- */
 public class SistemaMozo {
     
     private static SistemaMozo instancia;
@@ -23,7 +16,7 @@ public class SistemaMozo {
         this.mesas = new ArrayList<Mesa>();
     }
     
-    public static SistemaMozo getInsancia()
+    public static SistemaMozo getInstancia()
     {
         if(instancia == null){
             instancia = new SistemaMozo();

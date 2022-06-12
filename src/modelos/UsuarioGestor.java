@@ -1,28 +1,44 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package modelos;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author Dario
- */
-public class UsuarioGestor extends Usuario{
+public class UsuarioGestor extends Usuario {
 
-    public UsuarioGestor(String usuario, String contrasenia, String nombreCompleto, Date ultimoAcceso, UnidadesProcesadoras unidad) {
+    private Date ultimoAcceso;
+    private UnidadProcesadora unidad;
+    private ArrayList<Pedido> pedidos;
+
+    public UsuarioGestor(String usuario, String contrasenia, String nombreCompleto, UnidadProcesadora unidad) {
         super(usuario, contrasenia, nombreCompleto);
-        this.ultimoAcceso = ultimoAcceso;
         this.unidad = unidad;
-        this.pedidos = new ArrayList<Pedido>();
+    }
+
+    public Date getUltimoAcceso() {
+        return ultimoAcceso;
+    }
+
+    public void setUltimoAcceso(Date ultimoAcceso) {
+        this.ultimoAcceso = ultimoAcceso;
+    }
+
+    public UnidadProcesadora getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(UnidadProcesadora unidad) {
+        this.unidad = unidad;
+    }
+
+    public ArrayList<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(ArrayList<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
     
     
-   private Date ultimoAcceso;
-   private UnidadesProcesadoras unidad;
-   private ArrayList<Pedido> pedidos;
 
 }
