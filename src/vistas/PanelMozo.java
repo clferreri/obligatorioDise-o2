@@ -2,6 +2,7 @@ package vistas;
 
 import controladores.ControladorMozo;
 import controladores.VistaSistemaMozo;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -50,7 +51,8 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         lblNombreMozo = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblMesas = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
+        pnlContenido = new javax.swing.JPanel();
+        btnAbrirMesa = new javax.swing.JButton();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -72,6 +74,7 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -95,16 +98,9 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
                 "Mesa"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class
-            };
             boolean[] canEdit = new boolean [] {
                 false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -120,16 +116,21 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
             tblMesas.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+        pnlContenido.setMaximumSize(new java.awt.Dimension(400, 200));
+        pnlContenido.setMinimumSize(new java.awt.Dimension(400, 200));
+
+        javax.swing.GroupLayout pnlContenidoLayout = new javax.swing.GroupLayout(pnlContenido);
+        pnlContenido.setLayout(pnlContenidoLayout);
+        pnlContenidoLayout.setHorizontalGroup(
+            pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 262, Short.MAX_VALUE)
+        pnlContenidoLayout.setVerticalGroup(
+            pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        btnAbrirMesa.setText("Abrir Mesa");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,12 +143,14 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblNombreMozo)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 582, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(btnAbrirMesa, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(pnlContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -159,9 +162,13 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
                     .addComponent(lblNombreMozo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAbrirMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 53, Short.MAX_VALUE))
+                    .addComponent(pnlContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -177,26 +184,36 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
 
     private void mostrarInfoMesa(){
         try{
-            int numeroMesa = Integer.parseInt(this.tblMesas.getValueAt(this.tblMesas.getSelectedRow(), 0).toString());
-            this.controlador.cargarInfoServicioMesa(numeroMesa);
+            int row = this.tblMesas.getSelectedRow();
+            this.controlador.cargarInfoServicioMesa((Mesa)this.tblMesas.getValueAt(row, 0));
         }catch(FindMesaException ex)
         {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbrirMesa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblNombreMozo;
+    private javax.swing.JPanel pnlContenido;
     private javax.swing.JTable tblMesas;
     // End of variables declaration//GEN-END:variables
 
+    
+    private void cargarContenido(javax.swing.JPanel panel)
+    {
+        panel.setSize(600,200);
+        this.pnlContenido.removeAll();
+        pnlContenido.add(panel);
+        pnlContenido.revalidate();
+        pnlContenido.repaint();
+    }
     @Override
     public void cerrarSesion() {
         this.controlador.cerrarSesion();
@@ -208,10 +225,8 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         ColorearFilas colorear = new ColorearFilas();
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Mesas");
-        int contador = 0;
         for(Mesa m : mesas){
-            model.addRow(new Object[]{m.getNumero()});
-            contador ++;
+            model.addRow(new Object[]{m});
         }
         this.tblMesas.setModel(model);
         this.tblMesas.getColumnModel().getColumn(0);
@@ -220,9 +235,12 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
 
     @Override
     public void mostrarInfoServicioMesa(Servicio servicioMesa) {
+        this.cargarContenido(new InfoServicioMesa(servicioMesa));
         //this.
         //servicioMesa.getPedidos()
     }
+    
+   
 
 
 }

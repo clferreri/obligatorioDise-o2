@@ -42,4 +42,10 @@ public class Mesa {
     {
         return this.servicioActual;
     }
+    
+    @Override
+    public String toString()
+    {
+        return Integer.toString(this.numero);
+    }
 }

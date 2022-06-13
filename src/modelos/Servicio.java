@@ -36,6 +36,7 @@ public class Servicio {
     
     public Servicio(Mesa mesa)
     {
+        this.mesa = mesa;
         this.pedidos = new ArrayList<Pedido>();
     }
     

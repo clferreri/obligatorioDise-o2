@@ -5,6 +5,7 @@
 package controladores;
 
 import modelos.FachadaSistema;
+import modelos.Mesa;
 import modelos.UsuarioMozo;
 import modelos.excepciones.FindMesaException;
 
@@ -36,8 +37,8 @@ public class ControladorMozo{
         vista.cargarMesasMozo(this.sistema.getMesasAsignadas(this.mozo));
     }
     
-    public void cargarInfoServicioMesa(int numero) throws FindMesaException
+    public void cargarInfoServicioMesa(Mesa mesa) throws FindMesaException
     {
-        vista.mostrarInfoServicioMesa(this.sistema.getMesa(numero).getServicio());
+        vista.mostrarInfoServicioMesa(mesa.getServicio());
     }
 }

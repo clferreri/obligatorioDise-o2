@@ -23,18 +23,12 @@ public class ColorearFilas extends DefaultTableCellRenderer {
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean Selected, boolean hasFocus, int row, int col){
         
-        int numeroMesa = Integer.parseInt(table.getValueAt(row, 0).toString());
-        try {
-            Mesa m = FachadaSistema.getInstancia().getMesa(numeroMesa);
-            if(m.estaAbierta()){
-                setBackground(Color.GREEN);
-            }else{
-                setBackground(Color.GRAY);
-            }
-        } catch (FindMesaException ex) {
-            Logger.getLogger(ColorearFilas.class.getName()).log(Level.SEVERE, null, ex);
+        Mesa m = (Mesa)table.getValueAt(row, 0);
+        if(m.estaAbierta()){
+            setBackground(Color.GREEN);
+        }else{
+            setBackground(Color.GRAY);
         }
-        
         return super.getTableCellRendererComponent(table, value, Selected, hasFocus, row, col);
     }
     

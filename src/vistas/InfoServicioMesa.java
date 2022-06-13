@@ -4,6 +4,10 @@
  */
 package vistas;
 
+import javax.swing.table.DefaultTableModel;
+import modelos.Pedido;
+import modelos.Servicio;
+
 /**
  *
  * @author cferreri
@@ -13,8 +17,28 @@ public class InfoServicioMesa extends javax.swing.JPanel {
     /**
      * Creates new form InfoServicioMesa
      */
-    public InfoServicioMesa() {
+    public InfoServicioMesa(Servicio servicio) {
         initComponents();
+        int numeroMesa = servicio.getMesa().getNumero();
+        this.lblNumeroMesa.setText(Integer.toString(numeroMesa));
+        this.cargarTabla(servicio);
+    }
+    
+    public void cargarTabla(Servicio servicio)
+    {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Producto");
+        model.addColumn("Cantidad");
+        model.addColumn("Procesadora");
+        model.addColumn("Estado");
+        model.addColumn("Descripcion");
+        
+        for(Pedido p : servicio.getPedidos()){
+            model.addRow(new Object[]{p});
+        }
+        this.tblMesas.setModel(model);
+        this.tblMesas.getColumnModel().getColumn(0);
+        this.tblMesas.setDefaultRenderer(this.tblMesas.getColumnClass(0), colorear);
     }
 
     /**
@@ -26,19 +50,58 @@ public class InfoServicioMesa extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jLabel1 = new javax.swing.JLabel();
+        lblNumeroMesa = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblServicio = new javax.swing.JTable();
+
+        setMaximumSize(new java.awt.Dimension(600, 200));
+        setMinimumSize(new java.awt.Dimension(600, 200));
+        setPreferredSize(new java.awt.Dimension(400, 200));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setText("Nro Mesa");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        lblNumeroMesa.setText("jLabel2");
+        add(lblNumeroMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, -1, -1));
+
+        tblServicio.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Producto", "Cantidad", "Descripcion", "Procesadora", "Estado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblServicio);
+        if (tblServicio.getColumnModel().getColumnCount() > 0) {
+            tblServicio.getColumnModel().getColumn(0).setResizable(false);
+            tblServicio.getColumnModel().getColumn(1).setResizable(false);
+            tblServicio.getColumnModel().getColumn(2).setResizable(false);
+            tblServicio.getColumnModel().getColumn(3).setResizable(false);
+            tblServicio.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 500, 160));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblNumeroMesa;
+    private javax.swing.JTable tblServicio;
     // End of variables declaration//GEN-END:variables
 }
