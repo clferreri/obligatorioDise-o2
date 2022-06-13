@@ -9,33 +9,34 @@ import modelos.UnidadProcesadora;
 public class DatosPrueba {
 
     public static void cargar() {
-        UnidadProcesadora unidadProcesadoraBar = new UnidadProcesadora("Cocina");
-        UnidadProcesadora unidadProcesadoraCocina = new UnidadProcesadora("Bar");
-
+        //CARGA DE DATOS DE MOZOS
         UsuarioMozo mozo1 = new UsuarioMozo("lgperez", "perez123", "Luis German Perez", "093456879");
         UsuarioMozo mozo2 = new UsuarioMozo("sahernandez", "zanahoria1", "Sofia Agustina Hernandez", "093456874");
         UsuarioMozo mozo3 = new UsuarioMozo("pxtorres", "torres1", "Pablo Xavier Torres", "093456855");
         UsuarioMozo mozo4 = new UsuarioMozo("patorres", "torres2", "Paula Alma Torres", "094256630");
         UsuarioMozo mozo5 = new UsuarioMozo("ropuerta", "puerta", "Rodrigo Olmedo Puerta", "099456678");
-
-        UsuarioGestor gestor1 = new UsuarioGestor("palopez", "pablo123", "Pablo Lopez", unidadProcesadoraBar);
-        UsuarioGestor gestor2 = new UsuarioGestor("aguirreju", "juan123", "Juan Aguirre", unidadProcesadoraCocina);
-        UsuarioGestor gestor3 = new UsuarioGestor("pirezni", "nicolas123", "Nicolas Pirez", unidadProcesadoraCocina);
-        UsuarioGestor gestor4 = new UsuarioGestor("monteslu", "lucia123", "Lucia Montes", unidadProcesadoraCocina);
-        UsuarioGestor gestor5 = new UsuarioGestor("rodriguezPa", "patricia123", "Patricia Rodriguez", unidadProcesadoraBar);
-
-        FachadaSistema.getInstancia().agregarGestor(gestor1);
-        FachadaSistema.getInstancia().agregarGestor(gestor2);
-        FachadaSistema.getInstancia().agregarGestor(gestor3);
-        FachadaSistema.getInstancia().agregarGestor(gestor4);
-        FachadaSistema.getInstancia().agregarGestor(gestor5);
-
         FachadaSistema.getInstancia().agregarMozo(mozo1);
         FachadaSistema.getInstancia().agregarMozo(mozo2);
         FachadaSistema.getInstancia().agregarMozo(mozo3);
         FachadaSistema.getInstancia().agregarMozo(mozo4);
         FachadaSistema.getInstancia().agregarMozo(mozo5);
-
+        //FIN CARGA DE DATOS DE MOZO
+        
+        //CARGA DE DATOS DE GESTOR
+        UsuarioGestor gestor1 = new UsuarioGestor("palopez", "pablo123", "Pablo Lopez");
+        UsuarioGestor gestor2 = new UsuarioGestor("aguirreju", "juan123", "Juan Aguirre");
+        UsuarioGestor gestor3 = new UsuarioGestor("pirezni", "nicolas123", "Nicolas Pirez");
+        UsuarioGestor gestor4 = new UsuarioGestor("monteslu", "lucia123", "Lucia Montes");
+        UsuarioGestor gestor5 = new UsuarioGestor("rodriguezPa", "patricia123", "Patricia Rodriguez");
+        FachadaSistema.getInstancia().agregarGestor(gestor1);
+        FachadaSistema.getInstancia().agregarGestor(gestor2);
+        FachadaSistema.getInstancia().agregarGestor(gestor3);
+        FachadaSistema.getInstancia().agregarGestor(gestor4);
+        FachadaSistema.getInstancia().agregarGestor(gestor5);
+        //FIN CARGA DE DATOS DE GESTOR
+        
+        
+        //CARGA DE DATOS DE MESA
         Mesa mesa1 = new Mesa(1, mozo1);
         Mesa mesa2 = new Mesa(1, mozo1);
         Mesa mesa3 = new Mesa(1, mozo2);
@@ -67,5 +68,12 @@ public class DatosPrueba {
         FachadaSistema.getInstancia().agregarMesa(mesa13);
         FachadaSistema.getInstancia().agregarMesa(mesa14);
         FachadaSistema.getInstancia().agregarMesa(mesa15);
+        //FIN CARGA DE DATOS DE MESA
+        
+        UnidadProcesadora unidad1 = new UnidadProcesadora("Cocina");
+        UnidadProcesadora unidad2 = new UnidadProcesadora("Bar");
+        FachadaSistema.getInstancia().agregarUnidadProcesadora(unidad1);
+        FachadaSistema.getInstancia().agregarUnidadProcesadora(unidad2);
+        
     }
 }

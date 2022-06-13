@@ -5,6 +5,9 @@
 package vistas;
 
 import java.awt.Frame;
+import javax.swing.JOptionPane;
+import modelos.FachadaSistema;
+import modelos.UsuarioGestor;
 
 /**
  *
@@ -18,13 +21,24 @@ public class LoginGestor extends Login{
     
     @Override
     public Object ejecutarLogin(String usu, String pwd) {
-        System.out.print("GESTOR");
-        return new Object();
+        try{
+            return FachadaSistema.getInstancia().loginGestor(usu, pwd);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        return null; //nunca retorna null pero si no pongo esta sentencia no me deja continuar
     }
 
     @Override
     public void ejecutarCasoUso(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            this.dispose();
+            PanelGestor panel = new PanelGestor((UsuarioGestor)obj);
+            panel.setVisible(true);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        JOptionPane.showMessageDialog(null, "LOGEADO PAPUUU", "Error", JOptionPane.ERROR_MESSAGE);
     }
     
 }

@@ -25,7 +25,7 @@ public class LoginMozo extends Login{
     public Object ejecutarLogin(String usu, String pwd) {
         try{
             return FachadaSistema.getInstancia().loginMozo(usu, pwd);
-        }catch(LoginException ex){
+        }catch(Exception ex){
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
         return null; //nunca retorna null pero si no pongo esta sentencia no me deja continuar
@@ -41,7 +41,6 @@ public class LoginMozo extends Login{
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
         JOptionPane.showMessageDialog(null, "LOGEADO PAPUUU", "Error", JOptionPane.ERROR_MESSAGE);
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

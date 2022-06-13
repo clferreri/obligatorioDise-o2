@@ -14,4 +14,9 @@ public class Mesa {
     public boolean estaAbierta() {
         return this.mozo != null;
     }
+    
+    public UsuarioMozo getMozo()
+    {
+        return this.mozo;
+    }
 }

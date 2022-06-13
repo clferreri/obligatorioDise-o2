@@ -10,8 +10,12 @@ public class UsuarioGestor extends Usuario {
     private UnidadProcesadora unidad;
     private ArrayList<Pedido> pedidos;
 
-    public UsuarioGestor(String usuario, String contrasenia, String nombreCompleto, UnidadProcesadora unidad) {
+    public UsuarioGestor(String usuario, String contrasenia, String nombreCompleto) {
         super(usuario, contrasenia, nombreCompleto);
+    }
+    
+    public void setUnidadProcesador(UnidadProcesadora unidad)
+    {
         this.unidad = unidad;
     }
 

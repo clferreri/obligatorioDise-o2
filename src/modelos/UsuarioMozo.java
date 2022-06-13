@@ -4,6 +4,8 @@
  */
 package modelos;
 
+import java.util.Objects;
+
 /**
  *
  * @author Dario
@@ -17,4 +19,13 @@ public class UsuarioMozo extends Usuario {
         super(usuario, contrasenia, nombreCompleto);
         this.telefono = telefono;
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.getUsuario().equals(((UsuarioMozo)obj).getUsuario());
+    }
+    
+    
+    
 }

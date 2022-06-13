@@ -1,32 +1,29 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package vistas;
 
-import controladores.ControladorMozo;
-import controladores.VistaSistemaMozo;
-import java.util.ArrayList;
-import modelos.Mesa;
-import modelos.UsuarioMozo;
+import controladores.ControladorGestor;
+import controladores.VistaSistemaGestor;
+import modelos.UsuarioGestor;
 
 /**
  *
  * @author cferreri
  */
-public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
+public class PanelGestor extends javax.swing.JFrame implements VistaSistemaGestor{
 
-    private ControladorMozo controlador;
+    private ControladorGestor controlador;
     /**
-     * Creates new form PanelMozos
+     * Creates new form PanelGestor
      */
-    public PanelMozo(UsuarioMozo u) {
+    public PanelGestor(UsuarioGestor u) {
         initComponents();
-        this.setTitle("Sistema de Mozos");
+        this.setTitle("Sistema de Gestores");
         this.setLocationRelativeTo(null);
-        this.controlador = new ControladorMozo(this,u);
-        this.configurar();
-    }
-    
-    private void configurar()
-    {
-        //this.controlador.cargarMesasAsignadas();
+        this.controlador = new ControladorGestor(this,u);
+        //this.configurar();
     }
 
     /**
@@ -37,16 +34,6 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -73,21 +60,13 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         this.cerrarSesion();
     }//GEN-LAST:event_formWindowClosed
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    // End of variables declaration//GEN-END:variables
-
     @Override
     public void cerrarSesion() {
         this.controlador.cerrarSesion();
         this.dispose();
     }
 
-    @Override
-    public void cargarMesasMozo(ArrayList<Mesa> mesas) {
-        
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // End of variables declaration//GEN-END:variables
 }

@@ -2,6 +2,9 @@
 package modelos;
 
 import java.util.ArrayList;
+import modelos.excepciones.ActiveSessionException;
+import modelos.excepciones.FindMozoException;
+import modelos.excepciones.LoginException;
 
 public class SistemaMozo {
     
@@ -24,7 +27,7 @@ public class SistemaMozo {
         return instancia;
     }
     
-    public void login(UsuarioMozo u)
+    public void agregarSesionMozo(UsuarioMozo u)
     {
         this.mozosActivos.add(u);
     }
@@ -34,7 +37,25 @@ public class SistemaMozo {
         return this.mozosActivos.remove(m);
     }
     
-    public UsuarioMozo obtenerUsuarioMozo(String usu, String pass)
+    
+    public UsuarioMozo loginMozo(String usu, String pass) throws Exception
+    {
+        UsuarioMozo mozo = this.obtenerUsuarioMozo(usu, pass);
+        
+        if(mozo == null){
+            throw new FindMozoException();
+        }
+        
+        if(this.estaLogeado(usu)){
+            throw new ActiveSessionException();
+        }
+        
+        this.agregarSesionMozo(mozo);
+        return mozo;
+    }
+    
+    
+    public UsuarioMozo obtenerUsuarioMozo(String usu, String pass) throws FindMozoException
     {
         UsuarioMozo mozo = null;
         for(UsuarioMozo u : mozos)
@@ -44,6 +65,8 @@ public class SistemaMozo {
                 break;
             }
         }
+
+        
         return mozo;
     }
     
@@ -62,9 +85,11 @@ public class SistemaMozo {
     {
         ArrayList<Mesa> mesasAsignadas = new ArrayList<Mesa>();
         
-        //for(Mesa m : this.mesas){
-          //  m.equals(m);
-        //}
+        for(Mesa me : this.mesas){
+            if(me.getMozo().equals(m)){
+                mesasAsignadas.add(me);
+            }
+        }
         
         return mesasAsignadas;
     }
