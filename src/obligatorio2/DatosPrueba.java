@@ -38,20 +38,20 @@ public class DatosPrueba {
         
         //CARGA DE DATOS DE MESA
         Mesa mesa1 = new Mesa(1, mozo1);
-        Mesa mesa2 = new Mesa(1, mozo1);
-        Mesa mesa3 = new Mesa(1, mozo2);
-        Mesa mesa4 = new Mesa(1, mozo3);
-        Mesa mesa5 = new Mesa(1, mozo3);
-        Mesa mesa6 = new Mesa(1, mozo3);
-        Mesa mesa7 = new Mesa(1, mozo5);
-        Mesa mesa8 = new Mesa(1, mozo1);
-        Mesa mesa9 = new Mesa(1, null);
-        Mesa mesa10 = new Mesa(1, null);
-        Mesa mesa11 = new Mesa(1, null);
-        Mesa mesa12 = new Mesa(1, null);
-        Mesa mesa13 = new Mesa(1, null);
-        Mesa mesa14 = new Mesa(1, null);
-        Mesa mesa15 = new Mesa(1, null);
+        Mesa mesa2 = new Mesa(2, mozo1);
+        Mesa mesa3 = new Mesa(3, mozo2);
+        Mesa mesa4 = new Mesa(4, mozo3);
+        Mesa mesa5 = new Mesa(5, mozo3);
+        Mesa mesa6 = new Mesa(6, mozo3);
+        Mesa mesa7 = new Mesa(7, mozo5);
+        Mesa mesa8 = new Mesa(8, mozo1);
+        Mesa mesa9 = new Mesa(9, null);
+        Mesa mesa10 = new Mesa(10, null);
+        Mesa mesa11 = new Mesa(11, null);
+        Mesa mesa12 = new Mesa(12, null);
+        Mesa mesa13 = new Mesa(13, null);
+        Mesa mesa14 = new Mesa(14, null);
+        
 
         FachadaSistema.getInstancia().agregarMesa(mesa1);
         FachadaSistema.getInstancia().agregarMesa(mesa2);
@@ -67,7 +67,9 @@ public class DatosPrueba {
         FachadaSistema.getInstancia().agregarMesa(mesa12);
         FachadaSistema.getInstancia().agregarMesa(mesa13);
         FachadaSistema.getInstancia().agregarMesa(mesa14);
-        FachadaSistema.getInstancia().agregarMesa(mesa15);
+        
+        FachadaSistema.getInstancia().abrirMesa(mesa1.getNumero());
+        FachadaSistema.getInstancia().abrirMesa(mesa8.getNumero());
         //FIN CARGA DE DATOS DE MESA
         
         UnidadProcesadora unidad1 = new UnidadProcesadora("Cocina");

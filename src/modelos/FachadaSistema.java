@@ -2,7 +2,9 @@
 package modelos;
 
 import java.util.ArrayList;
+import modelos.excepciones.FindMesaException;
 import modelos.excepciones.LoginException;
+import modelos.excepciones.MesaIsOpenException;
 
 public class FachadaSistema {
     
@@ -44,6 +46,16 @@ public class FachadaSistema {
     public ArrayList<Mesa> getMesasAsignadas(UsuarioMozo mozo)
     {
         return this.sMozo.getMesasAsignadas(mozo);
+    }
+    
+    public Mesa getMesa(int numero) throws FindMesaException
+    {
+        return this.sMozo.obtenerMesa(numero);
+    }
+    
+    public boolean abrirMesa(int numero) throws FindMesaException, MesaIsOpenException
+    {
+        return this.sMozo.abrirMesa(numero);
     }
     
     //</editor-fold>

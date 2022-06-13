@@ -2,9 +2,15 @@ package vistas;
 
 import controladores.ControladorMozo;
 import controladores.VistaSistemaMozo;
+import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelos.Mesa;
+import modelos.Servicio;
 import modelos.UsuarioMozo;
+import modelos.excepciones.FindMesaException;
+import vistas.utilidades.ColorearFilas;
 
 /**
  *
@@ -20,14 +26,11 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         initComponents();
         this.setTitle("Sistema de Mozos");
         this.setLocationRelativeTo(null);
+        this.lblNombreMozo.setText(u.getNombreCompleto());
         this.controlador = new ControladorMozo(this,u);
-        this.configurar();
     }
     
-    private void configurar()
-    {
-        //this.controlador.cargarMesasAsignadas();
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,12 +44,34 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        lblNombreMozo = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblMesas = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -55,15 +80,103 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Mozo:");
+
+        lblNombreMozo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNombreMozo.setText("jLabel2");
+
+        tblMesas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Mesa"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblMesas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMesasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblMesas);
+        if (tblMesas.getColumnModel().getColumnCount() > 0) {
+            tblMesas.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        jLabel2.setText("Numero mesa: ");
+
+        jLabel3.setText("jLabel3");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addContainerGap(90, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addContainerGap(230, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNombreMozo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblNombreMozo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -73,10 +186,32 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         this.cerrarSesion();
     }//GEN-LAST:event_formWindowClosed
 
+    private void tblMesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMesasMouseClicked
+        this.mostrarInfoMesa();
+    }//GEN-LAST:event_tblMesasMouseClicked
+
+    private void mostrarInfoMesa(){
+        try{
+            int numeroMesa = Integer.parseInt(this.tblMesas.getValueAt(this.tblMesas.getSelectedRow(), 0).toString());
+            this.controlador.cargarInfoServicioMesa(numeroMesa);
+        }catch(FindMesaException ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblNombreMozo;
+    private javax.swing.JTable tblMesas;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -86,8 +221,24 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
     }
 
     @Override
-    public void cargarMesasMozo(ArrayList<Mesa> mesas) {
-        
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void cargarMesasMozo(ArrayList<Mesa> mesas){ 
+        ColorearFilas colorear = new ColorearFilas();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Mesas");
+        int contador = 0;
+        for(Mesa m : mesas){
+            model.addRow(new Object[]{m.getNumero()});
+            contador ++;
+        }
+        this.tblMesas.setModel(model);
+        this.tblMesas.getColumnModel().getColumn(0);
+        this.tblMesas.setDefaultRenderer(this.tblMesas.getColumnClass(0), colorear);
     }
+
+    @Override
+    public void mostrarInfoServicioMesa(Servicio servicioMesa) {
+        servicioMesa.getPedidos()
+    }
+
+
 }

@@ -3,8 +3,10 @@ package modelos;
 
 import java.util.ArrayList;
 import modelos.excepciones.ActiveSessionException;
+import modelos.excepciones.FindMesaException;
 import modelos.excepciones.FindMozoException;
 import modelos.excepciones.LoginException;
+import modelos.excepciones.MesaIsOpenException;
 
 public class SistemaMozo {
     
@@ -12,11 +14,13 @@ public class SistemaMozo {
     private ArrayList<UsuarioMozo> mozos;
     private ArrayList<UsuarioMozo> mozosActivos;
     private ArrayList<Mesa> mesas;
+    private ArrayList<Servicio> servicios;
     
     private SistemaMozo(){
-        this.mozos = new ArrayList<UsuarioMozo>();
-        this.mozosActivos = new ArrayList<UsuarioMozo>();
-        this.mesas = new ArrayList<Mesa>();
+        this.mozos          = new ArrayList<UsuarioMozo>();
+        this.mozosActivos   = new ArrayList<UsuarioMozo>();
+        this.mesas          = new ArrayList<Mesa>();
+        this.servicios      = new ArrayList<Servicio>();
     }
     
     public static SistemaMozo getInstancia()
@@ -86,7 +90,8 @@ public class SistemaMozo {
         ArrayList<Mesa> mesasAsignadas = new ArrayList<Mesa>();
         
         for(Mesa me : this.mesas){
-            if(me.getMozo().equals(m)){
+            UsuarioMozo mozoMesa = me.getMozo();
+            if(mozoMesa != null && mozoMesa.equals(m)){
                 mesasAsignadas.add(me);
             }
         }
@@ -94,8 +99,44 @@ public class SistemaMozo {
         return mesasAsignadas;
     }
     
+    public Mesa obtenerMesa(int numero) throws FindMesaException
+    {
+        Mesa m = this.getMesa(numero);
+        if (m == null){
+            throw new FindMesaException();
+        }
+        
+        return m;
+    }
     
     
+    private Mesa getMesa(int numero){
+        Mesa me = null;
+        for(Mesa m : this.mesas){
+            if(m.getNumero() == numero){
+                me = m;
+                break;
+            }
+        }
+        
+        return me;
+    }
+    
+    public boolean abrirMesa(int numero) throws FindMesaException, MesaIsOpenException{
+        Mesa m = this.getMesa(numero);
+        if(m == null){
+            throw new FindMesaException();
+        }
+        
+        if(m.estaAbierta()){
+            throw new MesaIsOpenException();
+        }
+        
+        Servicio servicioNuevo = new Servicio(m);
+        this.servicios.add(servicioNuevo);
+        m.setServicio(servicioNuevo);
+        return true;
+    }
     
     
     
