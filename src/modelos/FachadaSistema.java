@@ -57,6 +57,12 @@ public class FachadaSistema {
     {
         return this.sMozo.abrirMesa(numero);
     }
+   
+    
+    public boolean agregarPedido(Mesa mesa, Pedido pedido)
+    {
+        return this.sMozo.agregarPedido(mesa, pedido);
+    }
     
     //</editor-fold>
     
@@ -108,6 +114,10 @@ public class FachadaSistema {
     public void agregarUnidadProcesadora(UnidadProcesadora unidad)
     {
         this.sGestor.agregarUnidadProcesadora(unidad);
+    }
+    
+    public void agregarProducto(Producto prod){
+        this.sMozo.agregarProducto(prod);
     }
     
 }

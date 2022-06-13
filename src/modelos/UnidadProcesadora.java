@@ -30,5 +30,11 @@ public class UnidadProcesadora {
         this.pedidos = pedidos;
     }
     
+    @Override
+    public String toString()
+    {
+        return this.nombre;
+    }
+    
     
 }

@@ -16,5 +16,6 @@ public interface VistaSistemaMozo {
     
     public void cargarMesasMozo(ArrayList<Mesa> mesas);
     public void mostrarInfoServicioMesa(Servicio servicioMesa);
+    public void abrirMesa(boolean resultado);
     public void cerrarSesion();
 }

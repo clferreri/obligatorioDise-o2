@@ -34,11 +34,9 @@ public class InfoServicioMesa extends javax.swing.JPanel {
         model.addColumn("Descripcion");
         
         for(Pedido p : servicio.getPedidos()){
-            model.addRow(new Object[]{p.getProducto()});
-        }
-        this.tblMesas.setModel(model);
-        this.tblMesas.getColumnModel().getColumn(0);
-        this.tblMesas.setDefaultRenderer(this.tblMesas.getColumnClass(0), colorear);
+            model.addRow(new Object[]{p.getProducto(), p.getCantidad(), p.getProducto().getUnidadProcesadora(), p.getEstado(), p.getDescripcion()});
+        }     
+        this.tblServicio.setModel(model);
     }
 
     /**
@@ -54,9 +52,11 @@ public class InfoServicioMesa extends javax.swing.JPanel {
         lblNumeroMesa = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblServicio = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        btnAgregarProducto = new javax.swing.JButton();
 
-        setMaximumSize(new java.awt.Dimension(600, 200));
-        setMinimumSize(new java.awt.Dimension(600, 200));
+        setMaximumSize(new java.awt.Dimension(600, 350));
+        setMinimumSize(new java.awt.Dimension(600, 350));
         setPreferredSize(new java.awt.Dimension(400, 200));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -95,10 +95,28 @@ public class InfoServicioMesa extends javax.swing.JPanel {
         }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 500, 160));
+
+        jButton1.setText("Cerrar Mesa");
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 100, 30));
+
+        btnAgregarProducto.setText("Agregar Producto");
+        btnAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarProductoActionPerformed(evt);
+            }
+        });
+        add(btnAgregarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 150, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
+        AgregarProductoServicio ag = new AgregarProductoServicio();
+        ag.setVisible(true);
+    }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarProducto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblNumeroMesa;

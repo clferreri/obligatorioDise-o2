@@ -15,12 +15,14 @@ public class SistemaMozo {
     private ArrayList<UsuarioMozo> mozosActivos;
     private ArrayList<Mesa> mesas;
     private ArrayList<Servicio> servicios;
+    private ArrayList<Producto> productos;
     
     private SistemaMozo(){
         this.mozos          = new ArrayList<UsuarioMozo>();
         this.mozosActivos   = new ArrayList<UsuarioMozo>();
         this.mesas          = new ArrayList<Mesa>();
         this.servicios      = new ArrayList<Servicio>();
+        this.productos      = new ArrayList<Producto>();
     }
     
     public static SistemaMozo getInstancia()
@@ -138,6 +140,12 @@ public class SistemaMozo {
         return true;
     }
     
+    public boolean agregarPedido(Mesa m, Pedido p){
+        return m.getServicio().AgregarPedido(p);
+    }
+    
+    
+    
     
     
     
@@ -151,5 +159,10 @@ public class SistemaMozo {
     public void agregarMesa(Mesa mesa)
     {
         this.mesas.add(mesa);
+    }
+    
+    public void agregarProducto(Producto prod)
+    {
+        this.productos.add(prod);
     }
 }

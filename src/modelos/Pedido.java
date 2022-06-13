@@ -56,4 +56,9 @@ public class Pedido {
     public void setServicio(Servicio servicio) {
         this.servicio = servicio;
     }
+    
+    public String getEstado()
+    {
+        return (this.finalizado) ? "Entregado" : "Preparando";
+    }
 }

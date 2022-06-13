@@ -8,6 +8,7 @@ import modelos.FachadaSistema;
 import modelos.Mesa;
 import modelos.UsuarioMozo;
 import modelos.excepciones.FindMesaException;
+import modelos.excepciones.MesaIsOpenException;
 
 /**
  *
@@ -40,5 +41,11 @@ public class ControladorMozo{
     public void cargarInfoServicioMesa(Mesa mesa) throws FindMesaException
     {
         vista.mostrarInfoServicioMesa(mesa.getServicio());
+    }
+    
+    public void abrirMesa(int numero) throws FindMesaException, MesaIsOpenException
+    {
+        boolean resultado = this.sistema.abrirMesa(numero);
+        vista.abrirMesa(resultado);
     }
 }

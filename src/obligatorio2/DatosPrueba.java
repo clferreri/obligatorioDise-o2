@@ -2,6 +2,8 @@ package obligatorio2;
 
 import modelos.FachadaSistema;
 import modelos.Mesa;
+import modelos.Pedido;
+import modelos.Producto;
 import modelos.UsuarioMozo;
 import modelos.UsuarioGestor;
 import modelos.UnidadProcesadora;
@@ -21,9 +23,9 @@ public class DatosPrueba {
             FachadaSistema.getInstancia().agregarMozo(mozo3);
             FachadaSistema.getInstancia().agregarMozo(mozo4);
             FachadaSistema.getInstancia().agregarMozo(mozo5);
-            //FIN CARGA DE DATOS DE MOZO
+            //FIN CARGA DE DATOS DE MOZO /////////////////////////////////////////////////////////////////////////
 
-            //CARGA DE DATOS DE GESTOR
+            //CARGA DE DATOS DE GESTOR ///////////////////////////////////////////////////////////////////////////
             UsuarioGestor gestor1 = new UsuarioGestor("palopez", "pablo123", "Pablo Lopez");
             UsuarioGestor gestor2 = new UsuarioGestor("aguirreju", "juan123", "Juan Aguirre");
             UsuarioGestor gestor3 = new UsuarioGestor("pirezni", "nicolas123", "Nicolas Pirez");
@@ -34,19 +36,19 @@ public class DatosPrueba {
             FachadaSistema.getInstancia().agregarGestor(gestor3);
             FachadaSistema.getInstancia().agregarGestor(gestor4);
             FachadaSistema.getInstancia().agregarGestor(gestor5);
-            //FIN CARGA DE DATOS DE GESTOR
+            //FIN CARGA DE DATOS DE GESTOR /////////////////////////////////////////////////////////////////////
 
 
-            //CARGA DE DATOS DE MESA
-            Mesa mesa1 = new Mesa(1, mozo1);
-            Mesa mesa2 = new Mesa(2, mozo1);
-            Mesa mesa3 = new Mesa(3, mozo2);
-            Mesa mesa4 = new Mesa(4, mozo3);
-            Mesa mesa5 = new Mesa(5, mozo3);
-            Mesa mesa6 = new Mesa(6, mozo3);
-            Mesa mesa7 = new Mesa(7, mozo5);
-            Mesa mesa8 = new Mesa(8, mozo1);
-            Mesa mesa9 = new Mesa(9, null);
+            //CARGA DE DATOS DE MESA //////////////////////////////////////////////////////////////////////////
+            Mesa mesa1  = new Mesa(1, mozo1);
+            Mesa mesa2  = new Mesa(2, mozo1);
+            Mesa mesa3  = new Mesa(3, mozo2);
+            Mesa mesa4  = new Mesa(4, mozo3);
+            Mesa mesa5  = new Mesa(5, mozo3);
+            Mesa mesa6  = new Mesa(6, mozo3);
+            Mesa mesa7  = new Mesa(7, mozo5);
+            Mesa mesa8  = new Mesa(8, mozo1);
+            Mesa mesa9  = new Mesa(9, null);
             Mesa mesa10 = new Mesa(10, null);
             Mesa mesa11 = new Mesa(11, null);
             Mesa mesa12 = new Mesa(12, null);
@@ -71,12 +73,49 @@ public class DatosPrueba {
 
             FachadaSistema.getInstancia().abrirMesa(mesa1.getNumero());
             FachadaSistema.getInstancia().abrirMesa(mesa8.getNumero());
-            //FIN CARGA DE DATOS DE MESA
-
+            //FIN CARGA DE DATOS DE MESA ///////////////////////////////////////////////////////7
+            
+            
             UnidadProcesadora unidad1 = new UnidadProcesadora("Cocina");
             UnidadProcesadora unidad2 = new UnidadProcesadora("Bar");
             FachadaSistema.getInstancia().agregarUnidadProcesadora(unidad1);
             FachadaSistema.getInstancia().agregarUnidadProcesadora(unidad2);
+            
+            Producto prodMilanesa   = new Producto("M1","milanesa",450,2,unidad1);
+            Producto prodChivito    = new Producto("C1","chivito de carne",600,20,unidad1);
+            Producto prodPancho     = new Producto("P1","pancho",100,1,unidad1);
+            Producto prodPizza      = new Producto("P1","pizza ",400,5,unidad1);
+            Producto prodSopa       = new Producto("S1","sopa",300,20,unidad1);
+            Producto prodWhiky      = new Producto("W1","whisky",250,20,unidad2);
+            Producto prodCaipi      = new Producto("C1","Caipirinha",200,20,unidad2);
+            Producto prodCleri      = new Producto("C2","Clericot",190,3,unidad2);
+            Producto prodCuba       = new Producto("C3","Cuba libre",180,2,unidad2);
+            Producto prodDaiqui     = new Producto("D1","Daiquiri",150,1,unidad2);
+            Producto prodCerveza    = new Producto("C4","Cerveza",150,0,unidad2);
+            Producto prodCoca       = new Producto("C5","Coca-cola",150,0,unidad2);
+            
+            FachadaSistema.getInstancia().agregarProducto(prodMilanesa);
+            FachadaSistema.getInstancia().agregarProducto(prodChivito);
+            FachadaSistema.getInstancia().agregarProducto(prodPancho);
+            FachadaSistema.getInstancia().agregarProducto(prodPizza);
+            FachadaSistema.getInstancia().agregarProducto(prodSopa);
+            FachadaSistema.getInstancia().agregarProducto(prodWhiky);
+            FachadaSistema.getInstancia().agregarProducto(prodCaipi);
+            FachadaSistema.getInstancia().agregarProducto(prodCleri);
+            FachadaSistema.getInstancia().agregarProducto(prodCuba);
+            FachadaSistema.getInstancia().agregarProducto(prodDaiqui);
+            FachadaSistema.getInstancia().agregarProducto(prodCerveza);
+            FachadaSistema.getInstancia().agregarProducto(prodCoca);
+            
+            
+            Pedido pedi1 = new Pedido(prodMilanesa, 1, "Sin papas", mesa1.getServicio());
+            Pedido pedi2 = new Pedido(prodCuba, 1, "", mesa1.getServicio());
+            Pedido pedi3 = new Pedido(prodSopa, 1, "Con arroz", mesa8.getServicio());
+            
+            FachadaSistema.getInstancia().agregarPedido(mesa1, pedi1);
+            FachadaSistema.getInstancia().agregarPedido(mesa1, pedi2);
+            FachadaSistema.getInstancia().agregarPedido(mesa8, pedi3);
+            
         }catch(Exception ex){
             System.out.print("ERROR AL REALIZAR LA CARGA DE DATOS");
         }

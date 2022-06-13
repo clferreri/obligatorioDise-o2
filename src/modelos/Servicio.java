@@ -32,14 +32,17 @@ public class Servicio {
         this.cliente = cliente;
     }
 
-
-    
     public Servicio(Mesa mesa)
     {
         this.mesa = mesa;
         this.pedidos = new ArrayList<Pedido>();
     }
     
+    
+    public boolean AgregarPedido(Pedido p)
+    {
+        return this.pedidos.add(p);
+    }
     
     
     

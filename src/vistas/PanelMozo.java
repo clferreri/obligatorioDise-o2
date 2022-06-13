@@ -11,6 +11,7 @@ import modelos.Mesa;
 import modelos.Servicio;
 import modelos.UsuarioMozo;
 import modelos.excepciones.FindMesaException;
+import modelos.excepciones.MesaIsOpenException;
 import vistas.utilidades.ColorearFilas;
 
 /**
@@ -116,8 +117,8 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
             tblMesas.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        pnlContenido.setMaximumSize(new java.awt.Dimension(400, 200));
-        pnlContenido.setMinimumSize(new java.awt.Dimension(400, 200));
+        pnlContenido.setMaximumSize(new java.awt.Dimension(400, 350));
+        pnlContenido.setMinimumSize(new java.awt.Dimension(400, 350));
 
         javax.swing.GroupLayout pnlContenidoLayout = new javax.swing.GroupLayout(pnlContenido);
         pnlContenido.setLayout(pnlContenidoLayout);
@@ -131,6 +132,11 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         );
 
         btnAbrirMesa.setText("Abrir Mesa");
+        btnAbrirMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirMesaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,7 +172,7 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAbrirMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 53, Short.MAX_VALUE))
+                        .addGap(0, 88, Short.MAX_VALUE))
                     .addComponent(pnlContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -182,12 +188,26 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         this.mostrarInfoMesa();
     }//GEN-LAST:event_tblMesasMouseClicked
 
+    private void btnAbrirMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirMesaActionPerformed
+        this.abrirMesa();
+    }//GEN-LAST:event_btnAbrirMesaActionPerformed
+
     private void mostrarInfoMesa(){
         try{
             int row = this.tblMesas.getSelectedRow();
             this.controlador.cargarInfoServicioMesa((Mesa)this.tblMesas.getValueAt(row, 0));
         }catch(FindMesaException ex)
         {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+    
+    private void abrirMesa()
+    {
+        try{
+            int row = this.tblMesas.getSelectedRow();
+            this.controlador.abrirMesa(Integer.parseInt(this.tblMesas.getValueAt(row, 0).toString()));
+        }catch(NumberFormatException | FindMesaException | MesaIsOpenException ex){
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
@@ -208,7 +228,7 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
     
     private void cargarContenido(javax.swing.JPanel panel)
     {
-        panel.setSize(600,200);
+        panel.setSize(600,300);
         this.pnlContenido.removeAll();
         pnlContenido.add(panel);
         pnlContenido.revalidate();
@@ -235,12 +255,19 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
 
     @Override
     public void mostrarInfoServicioMesa(Servicio servicioMesa) {
-        this.cargarContenido(new InfoServicioMesa(servicioMesa));
-        //this.
-        //servicioMesa.getPedidos()
+        if(servicioMesa != null){
+            this.cargarContenido(new InfoServicioMesa(servicioMesa));
+        }
     }
-    
-   
 
+    @Override
+    public void abrirMesa(boolean resultado) {
+        if(resultado){
+            JOptionPane.showMessageDialog(this, "Mesa abierta correctamente.");
+            this.mostrarInfoMesa();
+        }else{
+            JOptionPane.showMessageDialog(this, "No se pudo abrir la mesa.");
+        }
+    }
 
 }
