@@ -2,6 +2,7 @@
 package modelos;
 
 import java.util.ArrayList;
+import modelos.excepciones.CloseSessionMozoException;
 import modelos.excepciones.FindMesaException;
 import modelos.excepciones.LoginException;
 import modelos.excepciones.MesaIsOpenException;
@@ -37,7 +38,7 @@ public class FachadaSistema {
      * @param mozo mozo que esta cerrando la sesion
      * @return si se cerro correctamente la sesion
      */
-    public boolean cerrarSesionMozo(UsuarioMozo mozo)
+    public boolean cerrarSesionMozo(UsuarioMozo mozo) throws CloseSessionMozoException
     {
         return this.sMozo.cerrarSesionMozo(mozo);
     }
@@ -62,6 +63,11 @@ public class FachadaSistema {
     public boolean agregarPedido(Mesa mesa, Pedido pedido)
     {
         return this.sMozo.agregarPedido(mesa, pedido);
+    }
+    
+    public ArrayList<Producto> getProductosConStock()
+    {
+        return this.sMozo.getProductosConStock();
     }
     
     //</editor-fold>

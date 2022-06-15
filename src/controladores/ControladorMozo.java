@@ -6,6 +6,8 @@ package controladores;
 
 import modelos.FachadaSistema;
 import modelos.Mesa;
+import modelos.Pedido;
+import modelos.Producto;
 import modelos.UsuarioMozo;
 import modelos.excepciones.FindMesaException;
 import modelos.excepciones.MesaIsOpenException;
@@ -27,25 +29,62 @@ public class ControladorMozo{
         this.mostrarMesasActivas();
     }
     
-    
-    public boolean cerrarSesion()
-    {
-        return this.sistema.cerrarSesionMozo(this.mozo);
-    }
-    
     public void mostrarMesasActivas()
     {
-        vista.cargarMesasMozo(this.sistema.getMesasAsignadas(this.mozo));
+        try{
+            vista.cargarMesasMozo(this.sistema.getMesasAsignadas(this.mozo));
+        }catch(Exception ex){
+            vista.error(ex.getMessage());
+        }
     }
     
-    public void cargarInfoServicioMesa(Mesa mesa) throws FindMesaException
+    
+    public void cerrarSesion()
     {
-        vista.mostrarInfoServicioMesa(mesa.getServicio());
+        try{
+            this.sistema.cerrarSesionMozo(this.mozo);
+            vista.cerrarSesion();
+        }catch(Exception ex){
+            vista.error(ex.getMessage());
+        }
     }
     
-    public void abrirMesa(int numero) throws FindMesaException, MesaIsOpenException
+    public void cargarInfoServicioMesa(Mesa mesa)
     {
-        boolean resultado = this.sistema.abrirMesa(numero);
-        vista.abrirMesa(resultado);
+        try{
+            vista.mostrarInfoServicioMesa(mesa.getServicio());
+        }catch(Exception ex){
+            vista.error(ex.getMessage());
+        }
+        
     }
+    
+    public void abrirMesa(int numero) 
+    {
+        try{
+            boolean resultado = this.sistema.abrirMesa(numero);
+            vista.abrirMesa(resultado);
+        }catch(FindMesaException | MesaIsOpenException ex){
+            vista.error(ex.getMessage());
+        }
+    }
+    
+    public void vistaAgregarProductoServicio()
+    {
+        try{
+            vista.vistaAgregarProductoServicio(this.sistema.getProductosConStock());
+        }catch(Exception ex){
+            vista.error(ex.getMessage());
+        }
+    }
+    public void AgregarProducto(Mesa mesa, Producto p, int cantidad, String descripcion){
+        try{
+            Pedido nuevoPedido = new Pedido(p,cantidad,descripcion, null);
+            this.sistema.agregarPedido(mesa, nuevoPedido);
+            vista.agregarProductoServicio();
+        }catch(Exception ex){
+            vista.error(ex.getMessage());
+        }
+    }
+
 }

@@ -1,4 +1,4 @@
-package vistas;
+package vistas.mozos;
 
 import controladores.ControladorMozo;
 import controladores.VistaSistemaMozo;
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelos.Mesa;
+import modelos.Producto;
 import modelos.Servicio;
 import modelos.UsuarioMozo;
 import modelos.excepciones.FindMesaException;
@@ -21,19 +22,24 @@ import vistas.utilidades.ColorearFilas;
 public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
 
     private ControladorMozo controlador;
+    
     /**
      * Creates new form PanelMozos
      */
     public PanelMozo(UsuarioMozo u) {
         initComponents();
-        this.setTitle("Sistema de Mozos");
-        this.setLocationRelativeTo(null);
+        this.configuracion();
         this.lblNombreMozo.setText(u.getNombreCompleto());
         this.controlador = new ControladorMozo(this,u);
     }
     
-
-
+    
+    private void configuracion()
+    {
+        this.setTitle("Sistema de Mozos");
+        this.setLocationRelativeTo(null);
+    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,6 +60,7 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         tblMesas = new javax.swing.JTable();
         pnlContenido = new javax.swing.JPanel();
         btnAbrirMesa = new javax.swing.JButton();
+        pnlBotonesAgregarProducto1 = new javax.swing.JPanel();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -81,12 +88,15 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
                 formWindowClosed(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Mozo:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 6, -1, -1));
 
         lblNombreMozo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombreMozo.setText("jLabel2");
+        getContentPane().add(lblNombreMozo, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 6, -1, -1));
 
         tblMesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,6 +127,8 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
             tblMesas.getColumnModel().getColumn(0).setResizable(false);
         }
 
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 38, 165, 219));
+
         pnlContenido.setMaximumSize(new java.awt.Dimension(400, 350));
         pnlContenido.setMinimumSize(new java.awt.Dimension(400, 350));
 
@@ -124,12 +136,14 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         pnlContenido.setLayout(pnlContenidoLayout);
         pnlContenidoLayout.setHorizontalGroup(
             pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 616, Short.MAX_VALUE)
         );
         pnlContenidoLayout.setVerticalGroup(
             pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 350, Short.MAX_VALUE)
         );
+
+        getContentPane().add(pnlContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 38, 616, 270));
 
         btnAbrirMesa.setText("Abrir Mesa");
         btnAbrirMesa.addActionListener(new java.awt.event.ActionListener() {
@@ -137,45 +151,22 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
                 btnAbrirMesaActionPerformed(evt);
             }
         });
+        getContentPane().add(btnAbrirMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 271, 165, 37));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNombreMozo)
-                        .addGap(0, 582, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(btnAbrirMesa, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnlContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+        pnlBotonesAgregarProducto1.setToolTipText("");
+
+        javax.swing.GroupLayout pnlBotonesAgregarProducto1Layout = new javax.swing.GroupLayout(pnlBotonesAgregarProducto1);
+        pnlBotonesAgregarProducto1.setLayout(pnlBotonesAgregarProducto1Layout);
+        pnlBotonesAgregarProducto1Layout.setHorizontalGroup(
+            pnlBotonesAgregarProducto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(lblNombreMozo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAbrirMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 88, Short.MAX_VALUE))
-                    .addComponent(pnlContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+        pnlBotonesAgregarProducto1Layout.setVerticalGroup(
+            pnlBotonesAgregarProducto1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
         );
+
+        getContentPane().add(pnlBotonesAgregarProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 400, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -192,25 +183,28 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         this.abrirMesa();
     }//GEN-LAST:event_btnAbrirMesaActionPerformed
 
-    private void mostrarInfoMesa(){
-        try{
-            int row = this.tblMesas.getSelectedRow();
-            this.controlador.cargarInfoServicioMesa((Mesa)this.tblMesas.getValueAt(row, 0));
-        }catch(FindMesaException ex)
-        {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
+    
+    protected void mostrarInfoMesa(){
+        int row = this.tblMesas.getSelectedRow();
+        this.controlador.cargarInfoServicioMesa((Mesa)this.tblMesas.getValueAt(row, 0));
     }
     
     private void abrirMesa()
     {
-        try{
-            int row = this.tblMesas.getSelectedRow();
-            this.controlador.abrirMesa(Integer.parseInt(this.tblMesas.getValueAt(row, 0).toString()));
-        }catch(NumberFormatException | FindMesaException | MesaIsOpenException ex){
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
+        int row = this.tblMesas.getSelectedRow();
+        this.controlador.abrirMesa(Integer.parseInt(this.tblMesas.getValueAt(row, 0).toString()));
     }
+    
+    public void agregarProductoView(Servicio servicioMesa){
+        this.controlador.vistaAgregarProductoServicio();
+    }
+    
+    public void agregarProducto(Producto p, int cantidad, String descripcion)
+    {
+        int row = this.tblMesas.getSelectedRow();
+        this.controlador.AgregarProducto((Mesa)this.tblMesas.getValueAt(row, 0), p, cantidad, descripcion);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirMesa;
     private javax.swing.JLabel jLabel1;
@@ -221,6 +215,7 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblNombreMozo;
+    private javax.swing.JPanel pnlBotonesAgregarProducto1;
     private javax.swing.JPanel pnlContenido;
     private javax.swing.JTable tblMesas;
     // End of variables declaration//GEN-END:variables
@@ -236,7 +231,6 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
     }
     @Override
     public void cerrarSesion() {
-        this.controlador.cerrarSesion();
         this.dispose();
     }
 
@@ -256,7 +250,11 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
     @Override
     public void mostrarInfoServicioMesa(Servicio servicioMesa) {
         if(servicioMesa != null){
-            this.cargarContenido(new InfoServicioMesa(servicioMesa));
+            this.cargarContenido(new InfoServicioMesa(servicioMesa, this));
+        }else{
+            this.pnlContenido.removeAll();
+            this.pnlContenido.revalidate();
+            this.pnlContenido.repaint();
         }
     }
 
@@ -269,5 +267,35 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
             JOptionPane.showMessageDialog(this, "No se pudo abrir la mesa.");
         }
     }
+
+    
+    @Override
+    public void vistaAgregarProductoServicio(ArrayList<Producto> productos) {
+        AgregarProductoServicio ap = new AgregarProductoServicio(this, productos);
+        this.cargarContenido(ap);
+    }
+    
+    @Override
+    public void agregarProductoServicio() {
+        JOptionPane.showMessageDialog(this, "Producto agregado correctamente");
+        this.mostrarInfoMesa();
+    }
+
+    @Override
+    public void cerrarMesa() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void transferirMesa() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void error(String mensage) {
+        JOptionPane.showMessageDialog(this, mensage);
+    }
+
+
 
 }

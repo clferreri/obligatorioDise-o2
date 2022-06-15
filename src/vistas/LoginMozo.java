@@ -4,6 +4,7 @@
  */
 package vistas;
 
+import vistas.mozos.PanelMozo;
 import java.awt.Frame;
 import javax.swing.JOptionPane;
 import modelos.UsuarioMozo;

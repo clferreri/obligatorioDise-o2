@@ -3,6 +3,7 @@ package modelos;
 
 import java.util.ArrayList;
 import modelos.excepciones.ActiveSessionException;
+import modelos.excepciones.CloseSessionMozoException;
 import modelos.excepciones.FindMesaException;
 import modelos.excepciones.FindMozoException;
 import modelos.excepciones.LoginException;
@@ -38,8 +39,15 @@ public class SistemaMozo {
         this.mozosActivos.add(u);
     }
     
-    public boolean cerrarSesionMozo(UsuarioMozo m)
+    public boolean cerrarSesionMozo(UsuarioMozo m) throws CloseSessionMozoException
     {
+        ArrayList<Mesa> mesasAsignadas = this.getMesasAsignadas(m);
+        
+        for(Mesa me : mesasAsignadas){
+            if(me.estaAbierta()){
+                throw new CloseSessionMozoException();
+            }
+        }
         return this.mozosActivos.remove(m);
     }
     
@@ -144,7 +152,13 @@ public class SistemaMozo {
         return m.getServicio().AgregarPedido(p);
     }
     
-    
+    public ArrayList<Producto> getProductosConStock()
+    {
+        ArrayList<Producto> productos = new ArrayList<Producto>();
+        
+        
+        return productos;
+    }
     
     
     

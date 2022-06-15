@@ -6,6 +6,7 @@ package controladores;
 
 import java.util.ArrayList;
 import modelos.Mesa;
+import modelos.Producto;
 import modelos.Servicio;
 
 /**
@@ -14,8 +15,14 @@ import modelos.Servicio;
  */
 public interface VistaSistemaMozo {
     
+    public void error(String mensage);
     public void cargarMesasMozo(ArrayList<Mesa> mesas);
     public void mostrarInfoServicioMesa(Servicio servicioMesa);
     public void abrirMesa(boolean resultado);
+    public void vistaAgregarProductoServicio(ArrayList<Producto> productos);
+    public void agregarProductoServicio();
+    
+    public void cerrarMesa();
+    public void transferirMesa();
     public void cerrarSesion();
 }

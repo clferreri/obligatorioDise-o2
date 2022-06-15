@@ -4,6 +4,7 @@
  */
 package vistas;
 
+import vistas.gestores.PanelGestor;
 import java.awt.Frame;
 import javax.swing.JOptionPane;
 import modelos.FachadaSistema;

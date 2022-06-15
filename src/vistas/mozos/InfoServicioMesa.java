@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package vistas;
+package vistas.mozos;
 
 import javax.swing.table.DefaultTableModel;
 import modelos.Pedido;
 import modelos.Servicio;
+import vistas.mozos.AgregarProductoServicio;
 
 /**
  *
@@ -14,11 +15,15 @@ import modelos.Servicio;
  */
 public class InfoServicioMesa extends javax.swing.JPanel {
 
+    private PanelMozo padre;
+    private Servicio servicio;
     /**
      * Creates new form InfoServicioMesa
      */
-    public InfoServicioMesa(Servicio servicio) {
+    public InfoServicioMesa(Servicio servicio, PanelMozo padre) {
         initComponents();
+        this.padre = padre;
+        this.servicio = servicio;
         int numeroMesa = servicio.getMesa().getNumero();
         this.lblNumeroMesa.setText(Integer.toString(numeroMesa));
         this.cargarTabla(servicio);
@@ -52,7 +57,7 @@ public class InfoServicioMesa extends javax.swing.JPanel {
         lblNumeroMesa = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblServicio = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnCerrarMesa = new javax.swing.JButton();
         btnAgregarProducto = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(600, 350));
@@ -94,10 +99,10 @@ public class InfoServicioMesa extends javax.swing.JPanel {
             tblServicio.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 500, 160));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 600, 200));
 
-        jButton1.setText("Cerrar Mesa");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 100, 30));
+        btnCerrarMesa.setText("Cerrar mesa");
+        add(btnCerrarMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 130, 40));
 
         btnAgregarProducto.setText("Agregar Producto");
         btnAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -105,18 +110,17 @@ public class InfoServicioMesa extends javax.swing.JPanel {
                 btnAgregarProductoActionPerformed(evt);
             }
         });
-        add(btnAgregarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 150, 30));
+        add(btnAgregarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 150, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
-        AgregarProductoServicio ag = new AgregarProductoServicio();
-        ag.setVisible(true);
+        this.padre.agregarProductoView(this.servicio);        // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProducto;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCerrarMesa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblNumeroMesa;
