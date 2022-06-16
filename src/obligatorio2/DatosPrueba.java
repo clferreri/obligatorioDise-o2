@@ -13,16 +13,19 @@ public class DatosPrueba {
     public static void cargar() {
         try{
             //CARGA DE DATOS DE MOZOS
+            System.out.print("1");
             UsuarioMozo mozo1 = new UsuarioMozo("lgperez", "perez123", "Luis German Perez", "093456879");
             UsuarioMozo mozo2 = new UsuarioMozo("sahernandez", "zanahoria1", "Sofia Agustina Hernandez", "093456874");
             UsuarioMozo mozo3 = new UsuarioMozo("pxtorres", "torres1", "Pablo Xavier Torres", "093456855");
             UsuarioMozo mozo4 = new UsuarioMozo("patorres", "torres2", "Paula Alma Torres", "094256630");
             UsuarioMozo mozo5 = new UsuarioMozo("ropuerta", "puerta", "Rodrigo Olmedo Puerta", "099456678");
+            System.out.print("2");
             FachadaSistema.getInstancia().agregarMozo(mozo1);
             FachadaSistema.getInstancia().agregarMozo(mozo2);
             FachadaSistema.getInstancia().agregarMozo(mozo3);
             FachadaSistema.getInstancia().agregarMozo(mozo4);
             FachadaSistema.getInstancia().agregarMozo(mozo5);
+            System.out.print("1");
             //FIN CARGA DE DATOS DE MOZO /////////////////////////////////////////////////////////////////////////
 
             //CARGA DE DATOS DE GESTOR ///////////////////////////////////////////////////////////////////////////
