@@ -318,7 +318,6 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
     @Override
     public void cerrarMesa(String cliente, float total, String beneficio, float totalBeneficio) {
         this.cargarContenido(new DetalleCierreMesa(cliente, total, beneficio, totalBeneficio));
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

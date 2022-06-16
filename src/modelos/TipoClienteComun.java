@@ -18,7 +18,7 @@ public class TipoClienteComun extends TipoCliente{
 
     @Override
     public float getTotalBeneficio(Servicio servicio) {
-        return servicio.getTotal() - servicio.getTotal(this.productoDescuento);
+        return servicio.getTotal(this.productoDescuento);
     }
 
     @Override
