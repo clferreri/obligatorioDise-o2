@@ -214,4 +214,9 @@ public class SistemaRestaurante {
     {
         this.productos.add(prod);
     }
+    
+    public void agregarCliente(Cliente cli)
+    {
+        this.clientes.add(cli);
+    }
 }

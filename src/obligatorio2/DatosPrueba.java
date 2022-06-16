@@ -127,7 +127,10 @@ public class DatosPrueba {
             Cliente cli2 = new Cliente(2, "Ana Paez", "ape123@gmail.com", new TipoClienteComun());
             Cliente cli3 = new Cliente(3, "Agustina Perez", "agustina_123@gmail.com", new TipoClienteDeLaCasa());
             Cliente cli4 = new Cliente(4, "Alejandro Furquiza", "furquia@gmail.com", new TipoClientePreferencial());
-            
+            FachadaSistema.getInstancia().agregarCliente(cli1);
+            FachadaSistema.getInstancia().agregarCliente(cli2);
+            FachadaSistema.getInstancia().agregarCliente(cli3);
+            FachadaSistema.getInstancia().agregarCliente(cli4);
             
         }catch(Exception ex){
             System.out.print("ERROR AL REALIZAR LA CARGA DE DATOS");

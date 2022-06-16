@@ -133,4 +133,9 @@ public class FachadaSistema extends Observable{
         this.sRestaurante.agregarProducto(prod);
     }
     
+    public void agregarCliente(Cliente cli)
+    {
+        this.sRestaurante.agregarCliente(cli);
+    }
+    
 }
