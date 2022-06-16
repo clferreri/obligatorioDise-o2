@@ -34,7 +34,7 @@ public class InfoServicioMesa extends javax.swing.JPanel {
         model.addColumn("Descripcion");
         
         for(Pedido p : servicio.getPedidos()){
-            model.addRow(new Object[]{p.getProducto(), p.getCantidad(), p.getProducto().getUnidadProcesadora(), p.getEstado(), p.getDescripcion()});
+            //model.addRow(new Object[]{p.getProducto(), p.getCantidad(), p.getProducto().getUnidadProcesadora(), p.getEstado(), p.getDescripcion()});
         }     
         this.tblServicio.setModel(model);
     }

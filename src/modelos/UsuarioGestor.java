@@ -14,6 +14,11 @@ public class UsuarioGestor extends Usuario {
         super(usuario, contrasenia, nombreCompleto);
     }
 
+    public void setUnidadProcesador(UnidadProcesadora unidad)
+    {
+        this.unidad = unidad;
+    }
+
     public Date getUltimoAcceso() {
         return ultimoAcceso;
     }

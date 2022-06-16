@@ -12,10 +12,12 @@ public class UnidadProcesadora {
     {
         this.nombre = nombre;
     }
-
-    public UnidadProcesadora() {
+    
+    public UnidadProcesadora()
+    {
+        this.nombre = nombre;
     }
-
+    
     public String getNombre() {
         return nombre;
     }
@@ -37,8 +39,4 @@ public class UnidadProcesadora {
     {
         return this.nombre;
     }
-    
-    
-    
-    
 }

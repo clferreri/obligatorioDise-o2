@@ -1,15 +1,14 @@
 package modelos;
 
 import java.util.ArrayList;
+import modelos.excepciones.CloseSessionMozoException;
 import modelos.excepciones.FindMesaException;
 import modelos.excepciones.LoginException;
 import modelos.excepciones.MesaIsOpenException;
 
-
 public class FachadaSistema {
 
     private SistemaUsuarios sUsuarios = SistemaUsuarios.getInstancia();
-    //private SistemaGestor sGestor = SistemaGestor.getInsancia();
     private SistemaRestaurante sRestaurante = SistemaRestaurante.getInsancia();
     private static FachadaSistema instancia = new FachadaSistema();
 
@@ -98,7 +97,7 @@ public class FachadaSistema {
     }
 
     //Sistema Restaurante
-    public ArrayList<Producto> getProductos() {
+    public ArrayList<Producto> getProductosConStock() {
         return sRestaurante.getProductos();
     }
 

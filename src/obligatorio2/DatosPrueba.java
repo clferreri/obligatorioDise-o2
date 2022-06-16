@@ -80,9 +80,7 @@ public class DatosPrueba {
             UnidadProcesadora unidad2 = new UnidadProcesadora("Bar");
             FachadaSistema.getInstancia().agregarUnidadProcesadora(unidad1);
             FachadaSistema.getInstancia().agregarUnidadProcesadora(unidad2);
-            
-            
-            
+
             Producto prodMilanesa   = new Producto("M1","milanesa",450,2,unidad1);
             Producto prodChivito    = new Producto("C1","chivito de carne",600,20,unidad1);
             Producto prodPancho     = new Producto("P1","pancho",100,1,unidad1);

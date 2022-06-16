@@ -1,4 +1,3 @@
-
 package modelos;
 
 public class Producto {
@@ -15,9 +14,6 @@ public class Producto {
         this.precio = precio;
         this.stock = stock;
         this.unidadProcesadora = unidad;
-    }
-
-    public Producto() {
     }
     
     public String getCodigo() {
@@ -64,5 +60,10 @@ public class Producto {
     public String toString()
     {
         return this.codigo + " - " + this.nombre;
+    }
+    
+    public boolean tieneStock()
+    {
+        return this.stock > 0;
     }
 }

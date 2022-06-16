@@ -38,19 +38,18 @@ public class SistemaRestaurante {
     }
 
     public UnidadProcesadora ObtenerUnidadProcesadora(String nombre) {
-        UnidadProcesadora unaUnidad = new UnidadProcesadora();
         if (nombre != "" && this.unidadesProcesadoras.size() > 0) {
             for (UnidadProcesadora u : this.unidadesProcesadoras) {
                 if (u.getNombre().equals(nombre)) {
-                    unaUnidad = u;
+                    return u;
                 }
             }
         }
-        return unaUnidad;
+        return null;
     }
 
     public Producto ObtenerProducto(String codigo) {
-        Producto unProducto = new Producto();
+        Producto unProducto = null;
         if (codigo != "" && this.productos.size() > 0) {
             for (Producto p : this.productos) {
                 if (p.getCodigo().equals(codigo)) {

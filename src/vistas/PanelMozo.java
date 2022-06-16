@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelos.Mesa;
+import modelos.Producto;
 import modelos.Servicio;
 import modelos.UsuarioMozo;
 import modelos.excepciones.FindMesaException;
@@ -193,13 +194,8 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
     }//GEN-LAST:event_btnAbrirMesaActionPerformed
 
     private void mostrarInfoMesa(){
-        try{
-            int row = this.tblMesas.getSelectedRow();
-            this.controlador.cargarInfoServicioMesa((Mesa)this.tblMesas.getValueAt(row, 0));
-        }catch(FindMesaException ex)
-        {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
+        int row = this.tblMesas.getSelectedRow();
+        this.controlador.cargarInfoServicioMesa((Mesa)this.tblMesas.getValueAt(row, 0));
     }
     
     private void abrirMesa()
@@ -207,7 +203,7 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         try{
             int row = this.tblMesas.getSelectedRow();
             this.controlador.abrirMesa(Integer.parseInt(this.tblMesas.getValueAt(row, 0).toString()));
-        }catch(NumberFormatException | FindMesaException | MesaIsOpenException ex){
+        }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
@@ -268,6 +264,31 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         }else{
             JOptionPane.showMessageDialog(this, "No se pudo abrir la mesa.");
         }
+    }
+
+    @Override
+    public void error(String mensage) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void vistaAgregarProductoServicio(ArrayList<Producto> productos) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void agregarProductoServicio() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void cerrarMesa() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void transferirMesa() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

@@ -59,15 +59,16 @@ public class Pedido {
         this.servicio = servicio;
     }
 
-    public String getEstado() {
-        return (this.finalizado) ? "Entregado" : "Preparando";
-    }
-
     public float SubTotal(Pedido p) {
         float monto = 0;
         if (p != null) {
             monto = p.cantidad * p.getProducto().getPrecio();
         }
         return monto;
+    }
+    
+    public String getEstado()
+    {
+        return (this.finalizado) ? "ENTREGADO" : "PREPARANDO";
     }
 }
