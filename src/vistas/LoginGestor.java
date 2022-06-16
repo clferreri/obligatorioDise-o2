@@ -39,7 +39,6 @@ public class LoginGestor extends Login{
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        JOptionPane.showMessageDialog(null, "LOGEADO PAPUUU", "Error", JOptionPane.ERROR_MESSAGE);
     }
     
 }

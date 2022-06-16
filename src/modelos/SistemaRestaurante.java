@@ -193,6 +193,12 @@ public class SistemaRestaurante {
         return s;
     }
     
+     public ArrayList<Pedido> getPedidosUnidad(String unidad) {
+        ArrayList<Pedido> aux = new ArrayList<Pedido>();
+        UnidadProcesadora p = this.ObtenerUnidadProcesadora(unidad);
+        return p.getPedidos();
+    }
+    
 
     public Cliente obtenerCliente(int idCliente){
         for(Cliente cli : this.clientes)
@@ -219,4 +225,10 @@ public class SistemaRestaurante {
     {
         this.clientes.add(cli);
     }
+    
+    public void agregarUnidadProcesadora(UnidadProcesadora unidad)
+    {
+        this.unidadesProcesadoras.add(unidad);
+    }
+  
 }

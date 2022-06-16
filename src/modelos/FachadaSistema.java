@@ -106,6 +106,18 @@ public class FachadaSistema extends Observable{
         return this.sUsuario.cerrarSesionGestor(gestor);
     }
     
+    
+    public ArrayList<UnidadProcesadora> getUnidadesProcesadoras()
+    {
+        return this.sRestaurante.getUnidadesProcesadoras();
+    }
+    
+    
+    public ArrayList<Pedido> getPedidosUnidad(String unidad)
+    {
+        return this.sRestaurante.getPedidosUnidad(unidad);
+    }
+    
     //</editor-fold>
     
     
@@ -126,7 +138,7 @@ public class FachadaSistema extends Observable{
     
     public void agregarUnidadProcesadora(UnidadProcesadora unidad)
     {
-        //this.sRestaurante.agregarUnidadProcesadora(unidad);
+        this.sRestaurante.agregarUnidadProcesadora(unidad);
     }
     
     public void agregarProducto(Producto prod){

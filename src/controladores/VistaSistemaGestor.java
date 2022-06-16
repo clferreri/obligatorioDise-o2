@@ -4,6 +4,10 @@
  */
 package controladores;
 
+import java.util.ArrayList;
+import modelos.Pedido;
+import modelos.UnidadProcesadora;
+
 /**
  *
  * @author cferreri
@@ -11,4 +15,7 @@ package controladores;
 public interface VistaSistemaGestor {
     
     public void cerrarSesion();
+    public void cargarUnidadesProcesadoras(ArrayList<UnidadProcesadora> unidades);
+    public void cargarPedidosSistema(ArrayList<Pedido> pedidos);
+    public void error(String mensaje);
 }

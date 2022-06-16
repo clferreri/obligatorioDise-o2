@@ -23,10 +23,27 @@ public class ControladorGestor {
         this.vista = vista;
         //Agrego el observer? - leer esto
         this.gestor = gestor;
+        this.mostrarUnidadesProcesadoras();
     }
     
     public boolean cerrarSesion()
     {
         return this.sistema.cerrarSesionGestor(this.gestor);
+    }
+    
+    public void mostrarUnidadesProcesadoras() {
+        try {
+            vista.cargarUnidadesProcesadoras(this.sistema.getUnidadesProcesadoras());
+        } catch (Exception ex) {
+            vista.error(ex.getMessage());
+        }
+    }
+    
+    public void mostrarPedidosUnidadProcesadora(String unidad) {
+        try {
+            vista.cargarPedidosSistema(this.sistema.getPedidosUnidad(unidad));
+        } catch (Exception ex) {
+            vista.error(ex.getMessage());
+        }
     }
 }
