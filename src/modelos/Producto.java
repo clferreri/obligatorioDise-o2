@@ -69,4 +69,9 @@ public class Producto {
     {
         return this.codigo + " - " + this.nombre;
     }
+    
+    public boolean tieneStock()
+    {
+        return this.stock > 0;
+    }
 }

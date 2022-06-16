@@ -21,7 +21,16 @@ public class AgregarProductoServicio extends javax.swing.JPanel {
     public AgregarProductoServicio(PanelMozo padre, ArrayList<Producto> productos) {
         initComponents();
         this.padre = padre;
-        
+        this.cargarProductos(productos);
+    }
+    
+    private void cargarProductos(ArrayList<Producto> productos)
+    {
+        this.cmbProductos.removeAll();
+        this.cmbProductos.repaint();
+        for(Producto prod : productos){
+            this.cmbProductos.addItem(prod.toString());
+        }
     }
 
     /**
@@ -44,7 +53,7 @@ public class AgregarProductoServicio extends javax.swing.JPanel {
         btnCancelar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
 
-        cmbProductos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbProductos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un producto..." }));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Agregar Nuevo Producto");

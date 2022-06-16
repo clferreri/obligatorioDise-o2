@@ -154,10 +154,15 @@ public class SistemaMozo {
     
     public ArrayList<Producto> getProductosConStock()
     {
-        ArrayList<Producto> productos = new ArrayList<Producto>();
-        
-        
-        return productos;
+        ArrayList<Producto> aux = new ArrayList<Producto>();
+        for(Producto p : this.productos)
+        {
+            if(p.tieneStock())
+            {
+                aux.add(p);
+            }
+        }
+        return aux;
     }
     
     
