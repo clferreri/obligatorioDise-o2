@@ -1,6 +1,8 @@
 package modelos;
 
-public class Pedido {
+import observadores.Observable;
+
+public class Pedido extends Observable{
 
     private Producto producto;
     private int cantidad;
@@ -60,5 +62,14 @@ public class Pedido {
     public String getEstado()
     {
         return (this.finalizado) ? "Entregado" : "Preparando";
+    }
+    
+    public float getTotal()
+    {
+        return this.producto.getPrecio() * this.cantidad;
+    }
+    
+    public boolean mismoProducto(Producto p){
+        return this.producto.equals(p);
     }
 }

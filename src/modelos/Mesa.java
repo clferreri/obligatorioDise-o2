@@ -43,9 +43,15 @@ public class Mesa {
         return this.servicioActual;
     }
     
+    public void cerrarMesa()
+    {
+        this.servicioActual = null;
+    }
+    
     @Override
     public String toString()
     {
         return Integer.toString(this.numero);
     }
+    
 }

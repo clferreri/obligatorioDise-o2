@@ -78,6 +78,7 @@ public class DatosPrueba {
             
             UnidadProcesadora unidad1 = new UnidadProcesadora("Cocina");
             UnidadProcesadora unidad2 = new UnidadProcesadora("Bar");
+            UnidadProcesadora unidad3 = new UnidadProcesadora("Cafeteria");
             FachadaSistema.getInstancia().agregarUnidadProcesadora(unidad1);
             FachadaSistema.getInstancia().agregarUnidadProcesadora(unidad2);
             
@@ -87,12 +88,13 @@ public class DatosPrueba {
             Producto prodPizza      = new Producto("P1","pizza ",400,5,unidad1);
             Producto prodSopa       = new Producto("S1","sopa",300,20,unidad1);
             Producto prodWhiky      = new Producto("W1","whisky",250,20,unidad2);
-            Producto prodCaipi      = new Producto("C1","Caipirinha",200,20,unidad2);
-            Producto prodCleri      = new Producto("C2","Clericot",190,3,unidad2);
-            Producto prodCuba       = new Producto("C3","Cuba libre",180,2,unidad2);
+            Producto prodCaipi      = new Producto("C2","Caipirinha",200,20,unidad2);
+            Producto prodCleri      = new Producto("C3","Clericot",190,3,unidad2);
+            Producto prodCuba       = new Producto("C4","Cuba libre",180,2,unidad2);
             Producto prodDaiqui     = new Producto("D1","Daiquiri",150,1,unidad2);
-            Producto prodCerveza    = new Producto("C4","Cerveza",150,0,unidad2);
-            Producto prodCoca       = new Producto("C5","Coca-cola",150,0,unidad2);
+            Producto prodCerveza    = new Producto("C5","Cerveza",150,0,unidad2);
+            Producto prodCoca       = new Producto("C6","Coca-cola",150,0,unidad2);
+            Producto pordCafe       = new Producto("CA1","Cafe",150,0,unidad3);
             
             FachadaSistema.getInstancia().agregarProducto(prodMilanesa);
             FachadaSistema.getInstancia().agregarProducto(prodChivito);
@@ -106,15 +108,15 @@ public class DatosPrueba {
             FachadaSistema.getInstancia().agregarProducto(prodDaiqui);
             FachadaSistema.getInstancia().agregarProducto(prodCerveza);
             FachadaSistema.getInstancia().agregarProducto(prodCoca);
-            
+            FachadaSistema.getInstancia().agregarProducto(pordCafe);
             
             Pedido pedi1 = new Pedido(prodMilanesa, 1, "Sin papas", mesa1.getServicio());
             Pedido pedi2 = new Pedido(prodCuba, 1, "", mesa1.getServicio());
             Pedido pedi3 = new Pedido(prodSopa, 1, "Con arroz", mesa8.getServicio());
             
-            FachadaSistema.getInstancia().agregarPedido(mesa1, pedi1);
-            FachadaSistema.getInstancia().agregarPedido(mesa1, pedi2);
-            FachadaSistema.getInstancia().agregarPedido(mesa8, pedi3);
+            FachadaSistema.getInstancia().agregarPedido(mesa1, prodMilanesa.getCodigo(), 1, "sin papas");
+            FachadaSistema.getInstancia().agregarPedido(mesa1, prodCuba.getCodigo(), 1, "");
+            FachadaSistema.getInstancia().agregarPedido(mesa8, prodSopa.getCodigo(), 1, "Con Arroz");
             
         }catch(Exception ex){
             System.out.print("ERROR AL REALIZAR LA CARGA DE DATOS");

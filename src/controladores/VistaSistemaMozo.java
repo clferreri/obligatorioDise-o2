@@ -22,7 +22,7 @@ public interface VistaSistemaMozo {
     public void vistaAgregarProductoServicio(ArrayList<Producto> productos);
     public void agregarProductoServicio();
     
-    public void cerrarMesa();
+    public void cerrarMesa(String cliente, float total, String Beneficio, float totalBeneficio);
     public void transferirMesa();
     public void cerrarSesion();
 }

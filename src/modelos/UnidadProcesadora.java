@@ -12,6 +12,7 @@ public class UnidadProcesadora {
     public UnidadProcesadora(String nombre)
     {
         this.nombre = nombre;
+        this.pedidos = new ArrayList<Pedido>();
     }
 
     public String getNombre() {
@@ -30,11 +31,20 @@ public class UnidadProcesadora {
         this.pedidos = pedidos;
     }
     
+    
+    public void agregarPedido(Pedido ped)
+    {
+        if(ped != null){
+            this.pedidos.add(ped);
+        }
+    }
+    
     @Override
     public String toString()
     {
         return this.nombre;
     }
+    
     
     
 }

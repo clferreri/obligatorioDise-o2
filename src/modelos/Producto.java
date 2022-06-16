@@ -74,4 +74,15 @@ public class Producto {
     {
         return this.stock > 0;
     }
+    
+    public boolean stockSuficiente(int cantidad){
+        return this.stock >= cantidad;
+    }
+    
+    public void descontarCantidad(int cantidad)
+    {
+        this.stock -= cantidad;
+    }
+    
+
 }

@@ -8,15 +8,19 @@ import modelos.FachadaSistema;
 import modelos.Mesa;
 import modelos.Pedido;
 import modelos.Producto;
+import modelos.Servicio;
 import modelos.UsuarioMozo;
+import modelos.excepciones.CloseSessionMozoException;
 import modelos.excepciones.FindMesaException;
 import modelos.excepciones.MesaIsOpenException;
+import observadores.Observable;
+import observadores.Observador;
 
 /**
  *
  * @author cferreri
  */
-public class ControladorMozo{
+public class ControladorMozo implements Observador{
     
     private VistaSistemaMozo vista;
     private UsuarioMozo mozo;
@@ -24,7 +28,7 @@ public class ControladorMozo{
     
     public ControladorMozo(VistaSistemaMozo vista, UsuarioMozo mozo){
         this.vista = vista;
-        //Agrego el observer? - leer esto
+        this.sistema.agregar(this);
         this.mozo = mozo;
         this.mostrarMesasActivas();
     }
@@ -44,7 +48,7 @@ public class ControladorMozo{
         try{
             this.sistema.cerrarSesionMozo(this.mozo);
             vista.cerrarSesion();
-        }catch(Exception ex){
+        }catch(CloseSessionMozoException ex){
             vista.error(ex.getMessage());
         }
     }
@@ -77,14 +81,38 @@ public class ControladorMozo{
             vista.error(ex.getMessage());
         }
     }
-    public void AgregarProducto(Mesa mesa, Producto p, int cantidad, String descripcion){
+    public void agregarProducto(Mesa mesa, String codigo, int cantidad, String descripcion){
         try{
-            Pedido nuevoPedido = new Pedido(p,cantidad,descripcion, null);
-            this.sistema.agregarPedido(mesa, nuevoPedido);
+            this.sistema.agregarPedido(mesa, codigo, cantidad, descripcion);
             vista.agregarProductoServicio();
+            
         }catch(Exception ex){
             vista.error(ex.getMessage());
         }
+    }
+    
+    public void cerrarMesa(int numeroMesa, int idCliente){
+        try{
+            Servicio s = this.sistema.cerrarMesa(numeroMesa, idCliente);
+            vista.cerrarMesa(s.getCliente().getNombre(), s.getTotal(), s.getBeneficio(), s.getTotalBeneficio());
+        }catch(Exception ex){
+            
+        }
+        
+    }
+
+    @Override
+    public void actualizar(Object evento, Observable origen) {
+        switch ((FachadaSistema.Eventos) evento) {
+            case eventoStock:
+                alerta();
+                break;
+        }
+    }
+    
+    private void alerta()
+    {
+        vista.error("ES UNA PRUEBA DE ACCIONES");
     }
 
 }

@@ -102,6 +102,11 @@ public class InfoServicioMesa extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 600, 200));
 
         btnCerrarMesa.setText("Cerrar mesa");
+        btnCerrarMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarMesaActionPerformed(evt);
+            }
+        });
         add(btnCerrarMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 130, 40));
 
         btnAgregarProducto.setText("Agregar Producto");
@@ -116,6 +121,10 @@ public class InfoServicioMesa extends javax.swing.JPanel {
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
         this.padre.agregarProductoView(this.servicio);        // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
+
+    private void btnCerrarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarMesaActionPerformed
+               // TODO add your handling code here:
+    }//GEN-LAST:event_btnCerrarMesaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

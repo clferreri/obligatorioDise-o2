@@ -9,5 +9,5 @@ package modelos.excepciones;
  * @author cferreri
  */
 public class CloseSessionMozoException extends Exception{
-    public CloseSessionMozoException() { super("Nombre de usuario y/o contraseña incorrectos");}
+    public CloseSessionMozoException() { super("Debe cerrar las mesas abiertas antes de salir");}
 }

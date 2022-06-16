@@ -2,15 +2,21 @@
 package modelos;
 
 import java.util.ArrayList;
+import modelos.excepciones.ClientNotFoundException;
 import modelos.excepciones.CloseSessionMozoException;
 import modelos.excepciones.FindMesaException;
 import modelos.excepciones.LoginException;
+import modelos.excepciones.MesaIsCloseException;
 import modelos.excepciones.MesaIsOpenException;
+import modelos.excepciones.MesaWithPendingOrdersException;
+import modelos.excepciones.NoCountException;
+import modelos.excepciones.NoStockException;
+import observadores.Observable;
 
-public class FachadaSistema {
+public class FachadaSistema extends Observable{
     
-    private SistemaMozo sMozo = SistemaMozo.getInstancia();
-    private SistemaGestor sGestor = SistemaGestor.getInsancia();
+    private SistemaUsuarios sUsuario = SistemaUsuarios.getInstancia();
+    private SistemaRestaurante sRestaurante = SistemaRestaurante.getInsancia();
     private static FachadaSistema instancia = new FachadaSistema();
     
     private FachadaSistema(){}
@@ -18,6 +24,10 @@ public class FachadaSistema {
     {
         return instancia;
     }
+    
+    public enum Eventos {
+        eventoStock 
+    };
     
     //<editor-fold desc="Seccion de Sistema Mozos">
     
@@ -30,7 +40,7 @@ public class FachadaSistema {
      */
     public UsuarioMozo loginMozo(String usu, String pass) throws Exception 
     {
-        return sMozo.loginMozo(usu, pass);
+        return sUsuario.loginMozo(usu, pass);
     }
     
     /**
@@ -40,34 +50,39 @@ public class FachadaSistema {
      */
     public boolean cerrarSesionMozo(UsuarioMozo mozo) throws CloseSessionMozoException
     {
-        return this.sMozo.cerrarSesionMozo(mozo);
+        return this.sUsuario.cerrarSesionMozo(mozo);
     }
       
       
     public ArrayList<Mesa> getMesasAsignadas(UsuarioMozo mozo)
     {
-        return this.sMozo.getMesasAsignadas(mozo);
+        return this.sRestaurante.getMesasAsignadas(mozo);
     }
     
     public Mesa getMesa(int numero) throws FindMesaException
     {
-        return this.sMozo.obtenerMesa(numero);
+        return this.sRestaurante.obtenerMesa(numero);
     }
     
     public boolean abrirMesa(int numero) throws FindMesaException, MesaIsOpenException
     {
-        return this.sMozo.abrirMesa(numero);
+        return this.sRestaurante.abrirMesa(numero);
     }
    
     
-    public boolean agregarPedido(Mesa mesa, Pedido pedido)
+    public boolean agregarPedido(Mesa mesa, String codigo, int cantidad, String descripcion) throws NoStockException, NoCountException, MesaIsCloseException
     {
-        return this.sMozo.agregarPedido(mesa, pedido);
+        return this.sRestaurante.agregarPedido(mesa, codigo, cantidad, descripcion);
     }
     
     public ArrayList<Producto> getProductosConStock()
     {
-        return this.sMozo.getProductosConStock();
+        return this.sRestaurante.getProductosConStock();
+    }
+    
+    public Servicio cerrarMesa(int numeroMesa, int idCliente) throws MesaIsCloseException, MesaWithPendingOrdersException, ClientNotFoundException
+    {
+       return this.sRestaurante.cerrarMesa(numeroMesa, idCliente);
     }
     
     //</editor-fold>
@@ -78,7 +93,7 @@ public class FachadaSistema {
     
     public UsuarioGestor loginGestor(String usu, String pass) throws Exception 
     {
-        return sGestor.loginGestor(usu, pass);
+        return sUsuario.loginGestor(usu, pass);
     }
     
     /**
@@ -88,42 +103,34 @@ public class FachadaSistema {
      */
     public boolean cerrarSesionGestor(UsuarioGestor gestor)
     {
-        return this.sGestor.cerrarSesion(gestor);
+        return this.sUsuario.cerrarSesionGestor(gestor);
     }
     
     //</editor-fold>
     
     
-  
-    
-    
-
-    
-    
-    
-    
     public void agregarMozo(UsuarioMozo mozo)
     {
-        this.sMozo.agregarMozo(mozo);
+        this.sUsuario.agregarMozo(mozo);
     }
     
     
     public void agregarGestor(UsuarioGestor gestor)
     {
-        this.sGestor.agregarGestor(gestor);
+        this.sUsuario.agregarGestor(gestor);
     }
         
     public void agregarMesa(Mesa mesa){
-        this.sMozo.agregarMesa(mesa);
+        this.sRestaurante.agregarMesa(mesa);
     }
     
     public void agregarUnidadProcesadora(UnidadProcesadora unidad)
     {
-        this.sGestor.agregarUnidadProcesadora(unidad);
+        //this.sRestaurante.agregarUnidadProcesadora(unidad);
     }
     
     public void agregarProducto(Producto prod){
-        this.sMozo.agregarProducto(prod);
+        this.sRestaurante.agregarProducto(prod);
     }
     
 }

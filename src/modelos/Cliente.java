@@ -22,5 +22,25 @@ public class Cliente {
         this.email          = email;
         this.tipoCliente    = tipoCliente;
     }
+    
+    public int getId()
+    {
+        return this.id;
+    }
+    
+    public String getNombre(){
+        return this.nombre;
+    }
+    
+    
+    public String getNombreBeneficio()
+    {
+        return this.tipoCliente.beneficio();
+    }
+    
+    public float getTotalBeneficio(Servicio s)
+    {
+        return this.tipoCliente.getTotalBeneficio(s);
+    }
 
 }

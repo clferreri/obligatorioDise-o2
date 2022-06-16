@@ -5,6 +5,8 @@ import controladores.VistaSistemaMozo;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelos.Mesa;
@@ -81,11 +83,14 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -172,7 +177,7 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        this.cerrarSesion();
+        
     }//GEN-LAST:event_formWindowClosed
 
     private void tblMesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMesasMouseClicked
@@ -182,6 +187,10 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
     private void btnAbrirMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirMesaActionPerformed
         this.abrirMesa();
     }//GEN-LAST:event_btnAbrirMesaActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+          this.controlador.cerrarSesion();
+    }//GEN-LAST:event_formWindowClosing
 
     
     protected void mostrarInfoMesa(){
@@ -199,10 +208,23 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         this.controlador.vistaAgregarProductoServicio();
     }
     
-    public void agregarProducto(Producto p, int cantidad, String descripcion)
+    public void cerrarMesa(int idCliente)
     {
         int row = this.tblMesas.getSelectedRow();
-        this.controlador.AgregarProducto((Mesa)this.tblMesas.getValueAt(row, 0), p, cantidad, descripcion);
+        this.controlador.cerrarMesa(((Mesa)this.tblMesas.getValueAt(row, 0)).getNumero(), idCliente);
+    }
+    
+    public void agregarProducto(String codigo, int cantidad, String descripcion)
+    {
+        if(codigo.isBlank()){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un producto.");
+        }
+        if(cantidad < 1){
+            JOptionPane.showMessageDialog(this, "Cantidad inválida.");
+        }
+        
+        int row = this.tblMesas.getSelectedRow();
+        this.controlador.agregarProducto((Mesa)this.tblMesas.getValueAt(row, 0), codigo, cantidad, descripcion);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -282,7 +304,7 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
     }
 
     @Override
-    public void cerrarMesa() {
+    public void cerrarMesa(String cliente, float total, String Beneficio, float totalBeneficio) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -295,7 +317,6 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
     public void error(String mensage) {
         JOptionPane.showMessageDialog(this, mensage);
     }
-
 
 
 }
