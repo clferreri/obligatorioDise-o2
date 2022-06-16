@@ -208,10 +208,22 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         this.controlador.vistaAgregarProductoServicio();
     }
     
-    public void cerrarMesa(int idCliente)
+    public void cerrarMesaView(){
+        this.cargarContenido(new CerrarMesa(this));
+    }
+    
+    public void cerrarMesa(String idCliente)
     {
-        int row = this.tblMesas.getSelectedRow();
-        this.controlador.cerrarMesa(((Mesa)this.tblMesas.getValueAt(row, 0)).getNumero(), idCliente);
+        try{
+            int id = -1;
+            if(!idCliente.isBlank()){
+                id = Integer.parseInt(idCliente);
+            }
+            int row = this.tblMesas.getSelectedRow();
+            this.controlador.cerrarMesa(((Mesa)this.tblMesas.getValueAt(row, 0)).getNumero(), id);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, "El id solo puede ser numerico.");
+        }
     }
     
     public void agregarProducto(String codigo, int cantidad, String descripcion)
@@ -304,7 +316,8 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
     }
 
     @Override
-    public void cerrarMesa(String cliente, float total, String Beneficio, float totalBeneficio) {
+    public void cerrarMesa(String cliente, float total, String beneficio, float totalBeneficio) {
+        this.cargarContenido(new DetalleCierreMesa(cliente, total, beneficio, totalBeneficio));
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

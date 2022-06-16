@@ -13,15 +13,13 @@ import modelos.Servicio;
 public class CerrarMesa extends javax.swing.JPanel {
 
     private PanelMozo padre;
-    private Servicio servicio;
     
     /**
      * Creates new form CerrarMesa
      */
-    public CerrarMesa(Servicio servicio, PanelMozo padre){
+    public CerrarMesa(PanelMozo padre){
         initComponents();
         this.padre = padre;
-        this.servicio = servicio;
     }
 
     /**
@@ -35,7 +33,7 @@ public class CerrarMesa extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        lblIdCliente = new javax.swing.JTextField();
         btnCerrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -71,7 +69,7 @@ public class CerrarMesa extends javax.swing.JPanel {
                         .addGap(127, 127, 127)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
+                            .addComponent(lblIdCliente)
                             .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(146, Short.MAX_VALUE))
@@ -84,7 +82,7 @@ public class CerrarMesa extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -94,11 +92,11 @@ public class CerrarMesa extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.padre.mostrarInfoServicioMesa(servicio);       // TODO add your handling code here:
+        this.padre.mostrarInfoMesa();   // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-         // TODO add your handling code here:
+        this.padre.cerrarMesa(this.lblIdCliente.getText());         // TODO add your handling code here:
     }//GEN-LAST:event_btnCerrarActionPerformed
 
 
@@ -107,6 +105,6 @@ public class CerrarMesa extends javax.swing.JPanel {
     private javax.swing.JButton btnCerrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField lblIdCliente;
     // End of variables declaration//GEN-END:variables
 }

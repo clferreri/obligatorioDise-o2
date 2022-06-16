@@ -94,9 +94,9 @@ public class ControladorMozo implements Observador{
     public void cerrarMesa(int numeroMesa, int idCliente){
         try{
             Servicio s = this.sistema.cerrarMesa(numeroMesa, idCliente);
-            vista.cerrarMesa(s.getCliente().getNombre(), s.getTotal(), s.getBeneficio(), s.getTotalBeneficio());
+            vista.cerrarMesa(s.getNombreCliente(), s.getTotal(), s.getBeneficio(), s.getTotalBeneficio());
         }catch(Exception ex){
-            
+            vista.error(ex.getMessage());
         }
         
     }

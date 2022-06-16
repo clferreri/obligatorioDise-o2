@@ -123,7 +123,7 @@ public class InfoServicioMesa extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
     private void btnCerrarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarMesaActionPerformed
-               // TODO add your handling code here:
+        this.padre.cerrarMesaView();
     }//GEN-LAST:event_btnCerrarMesaActionPerformed
 
 

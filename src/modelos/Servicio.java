@@ -92,6 +92,10 @@ public class Servicio extends Observable{
     
     public String getBeneficio()
     {
+        if(this.cliente == null){
+            return "SIN BENEFICIO";
+        }
+        
         return this.cliente.getNombreBeneficio();
     }
     
@@ -102,6 +106,15 @@ public class Servicio extends Observable{
         }
         
         return this.cliente.getTotalBeneficio(this);
+    }
+    
+    public String getNombreCliente()
+    {
+        if(this.cliente == null){
+            return "";
+        }
+        
+        return this.cliente.getNombre();
     }
         
     

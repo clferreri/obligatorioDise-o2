@@ -1,9 +1,13 @@
 package obligatorio2;
 
+import modelos.Cliente;
 import modelos.FachadaSistema;
 import modelos.Mesa;
 import modelos.Pedido;
 import modelos.Producto;
+import modelos.TipoClienteComun;
+import modelos.TipoClienteDeLaCasa;
+import modelos.TipoClientePreferencial;
 import modelos.UsuarioMozo;
 import modelos.UsuarioGestor;
 import modelos.UnidadProcesadora;
@@ -117,6 +121,13 @@ public class DatosPrueba {
             FachadaSistema.getInstancia().agregarPedido(mesa1, prodMilanesa.getCodigo(), 1, "sin papas");
             FachadaSistema.getInstancia().agregarPedido(mesa1, prodCuba.getCodigo(), 1, "");
             FachadaSistema.getInstancia().agregarPedido(mesa8, prodSopa.getCodigo(), 1, "Con Arroz");
+            
+            
+            Cliente cli1 = new Cliente(1, "Cristian Perez", "clferreri94@gmail.com", new TipoClienteComun());
+            Cliente cli2 = new Cliente(2, "Ana Paez", "ape123@gmail.com", new TipoClienteComun());
+            Cliente cli3 = new Cliente(3, "Agustina Perez", "agustina_123@gmail.com", new TipoClienteDeLaCasa());
+            Cliente cli4 = new Cliente(4, "Alejandro Furquiza", "furquia@gmail.com", new TipoClientePreferencial());
+            
             
         }catch(Exception ex){
             System.out.print("ERROR AL REALIZAR LA CARGA DE DATOS");
