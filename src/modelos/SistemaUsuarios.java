@@ -128,4 +128,16 @@ public class SistemaUsuarios {
         }
         return gestor;
     }
+    
+    public ArrayList<UsuarioMozo> mozosEnLinea(UsuarioMozo m){
+        ArrayList<UsuarioMozo> mozos = new ArrayList<UsuarioMozo>();
+        for(UsuarioMozo moz : this.mozosActivos)
+        {
+            if(!moz.equals(m)){
+                mozos.add(moz);
+            }
+        }
+        
+        return mozos;
+    }
 }

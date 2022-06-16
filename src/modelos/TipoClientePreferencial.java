@@ -10,9 +10,10 @@ package modelos;
  */
 public class TipoClientePreferencial extends TipoCliente{
 
+    private Producto productoDescuento = new Producto("AG1","Agua Mineral",150,0,new UnidadProcesadora("Cocina"));
     @Override
     public String beneficio() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "Invitacion de agua";
     }
 
     @Override
@@ -22,7 +23,12 @@ public class TipoClientePreferencial extends TipoCliente{
 
     @Override
     public float getTotalBeneficio(Servicio servicio) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        float totalBeneficio = servicio.getTotal(productoDescuento);
+        
+        if(servicio.getTotal() > 2000){
+            return (float)(totalBeneficio + servicio.getTotal() * 0.05);
+        }
+        return totalBeneficio;
     }
     
 }

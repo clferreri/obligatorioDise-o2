@@ -61,8 +61,9 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         jScrollPane2 = new javax.swing.JScrollPane();
         tblMesas = new javax.swing.JTable();
         pnlContenido = new javax.swing.JPanel();
-        btnAbrirMesa = new javax.swing.JButton();
         pnlBotonesAgregarProducto1 = new javax.swing.JPanel();
+        btnAbrirMesa1 = new javax.swing.JButton();
+        btnTransferir = new javax.swing.JButton();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -93,15 +94,12 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
                 formWindowClosing(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Mozo:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 6, -1, -1));
 
         lblNombreMozo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombreMozo.setText("jLabel2");
-        getContentPane().add(lblNombreMozo, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 6, -1, -1));
 
         tblMesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,8 +130,6 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
             tblMesas.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 38, 165, 219));
-
         pnlContenido.setMaximumSize(new java.awt.Dimension(400, 350));
         pnlContenido.setMinimumSize(new java.awt.Dimension(400, 350));
 
@@ -145,18 +141,8 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         );
         pnlContenidoLayout.setVerticalGroup(
             pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-
-        getContentPane().add(pnlContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 38, 616, 270));
-
-        btnAbrirMesa.setText("Abrir Mesa");
-        btnAbrirMesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAbrirMesaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAbrirMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 271, 165, 37));
 
         pnlBotonesAgregarProducto1.setToolTipText("");
 
@@ -171,7 +157,67 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
             .addGap(0, 45, Short.MAX_VALUE)
         );
 
-        getContentPane().add(pnlBotonesAgregarProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 400, -1));
+        btnAbrirMesa1.setText("Abrir Mesa");
+        btnAbrirMesa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirMesa1ActionPerformed(evt);
+            }
+        });
+
+        btnTransferir.setText("Transferir");
+        btnTransferir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransferirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1)
+                        .addGap(6, 6, 6)
+                        .addComponent(lblNombreMozo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnTransferir, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(pnlBotonesAgregarProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAbrirMesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addComponent(pnlContenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(lblNombreMozo))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAbrirMesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(pnlBotonesAgregarProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTransferir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -184,13 +230,17 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         this.mostrarInfoMesa();
     }//GEN-LAST:event_tblMesasMouseClicked
 
-    private void btnAbrirMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirMesaActionPerformed
-        this.abrirMesa();
-    }//GEN-LAST:event_btnAbrirMesaActionPerformed
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
           this.controlador.cerrarSesion();
     }//GEN-LAST:event_formWindowClosing
+
+    private void btnAbrirMesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirMesa1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAbrirMesa1ActionPerformed
+
+    private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
+        this.controlador.mozosHabilitadosTransferencia();
+    }//GEN-LAST:event_btnTransferirActionPerformed
 
     
     protected void mostrarInfoMesa(){
@@ -238,9 +288,17 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
         int row = this.tblMesas.getSelectedRow();
         this.controlador.agregarProducto((Mesa)this.tblMesas.getValueAt(row, 0), codigo, cantidad, descripcion);
     }
+    
+    
+    public void ejecutarTransferencia(UsuarioMozo m)
+    {
+        int row = this.tblMesas.getSelectedRow();
+        this.controlador.transferirMesa((Mesa)this.tblMesas.getValueAt(row, 0), m);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAbrirMesa;
+    private javax.swing.JButton btnAbrirMesa1;
+    private javax.swing.JButton btnTransferir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -328,6 +386,17 @@ public class PanelMozo extends javax.swing.JFrame implements VistaSistemaMozo{
     @Override
     public void error(String mensage) {
         JOptionPane.showMessageDialog(this, mensage);
+    }
+
+    @Override
+    public void vistaTransferirMesa(ArrayList<UsuarioMozo> mozos) {
+        TransferirMesa tm = new TransferirMesa(this, mozos);
+        this.cargarContenido(tm);        // TODO add your handling code here:
+    }
+
+    @Override
+    public void vistaTransferenciaCompleta() {
+        JOptionPane.showMessageDialog(this, "Mesa Transferida correctamente");
     }
 
 

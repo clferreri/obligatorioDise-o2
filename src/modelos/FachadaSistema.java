@@ -85,6 +85,16 @@ public class FachadaSistema extends Observable{
        return this.sRestaurante.cerrarMesa(numeroMesa, idCliente);
     }
     
+    public ArrayList<UsuarioMozo> getMozosDisponiblesTransferencia(UsuarioMozo mozo)
+    {
+        return this.sRestaurante.getMozosDisponiblesTransferencia(mozo);
+    }
+    
+    public boolean transferirMesa(Mesa mesa,UsuarioMozo mozoOrigen, UsuarioMozo mozoDestino) throws FindMesaException
+    {
+        return this.sRestaurante.transferirMesa(mesa, mozoOrigen, mozoDestino);
+    }
+    
     //</editor-fold>
     
     

@@ -4,6 +4,7 @@
  */
 package controladores;
 
+import java.util.ArrayList;
 import modelos.FachadaSistema;
 import modelos.Mesa;
 import modelos.Pedido;
@@ -99,6 +100,21 @@ public class ControladorMozo implements Observador{
             vista.error(ex.getMessage());
         }
         
+    }
+    
+    public void mozosHabilitadosTransferencia(){
+        vista.vistaTransferirMesa(this.sistema.getMozosDisponiblesTransferencia(this.mozo));
+    }
+    
+    public void transferirMesa(Mesa mesa, UsuarioMozo mozo)
+    {
+        try{
+            this.sistema.transferirMesa(mesa, this.mozo, mozo);
+            vista.vistaTransferenciaCompleta();
+        }catch(Exception ex)
+        {
+            vista.error(ex.getMessage());
+        }
     }
 
     @Override

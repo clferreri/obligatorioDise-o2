@@ -45,4 +45,10 @@ public abstract class Usuario {
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
     }
+    
+    @Override
+    public String toString()
+    {
+        return this.nombreCompleto;
+    }
 }

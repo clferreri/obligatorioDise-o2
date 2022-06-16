@@ -12,7 +12,7 @@ public class TipoClienteDeLaCasa extends TipoCliente{
 
     @Override
     public String beneficio() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "500 Gratis";
     }
 
     @Override
@@ -22,7 +22,7 @@ public class TipoClienteDeLaCasa extends TipoCliente{
 
     @Override
     public float getTotalBeneficio(Servicio servicio) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return 500;
     }
     
 }

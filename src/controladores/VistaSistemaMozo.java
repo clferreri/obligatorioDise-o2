@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import modelos.Mesa;
 import modelos.Producto;
 import modelos.Servicio;
+import modelos.UsuarioMozo;
 
 /**
  *
@@ -21,6 +22,8 @@ public interface VistaSistemaMozo {
     public void abrirMesa(boolean resultado);
     public void vistaAgregarProductoServicio(ArrayList<Producto> productos);
     public void agregarProductoServicio();
+    public void vistaTransferirMesa(ArrayList<UsuarioMozo> mozos);
+    public void vistaTransferenciaCompleta();
     
     public void cerrarMesa(String cliente, float total, String Beneficio, float totalBeneficio);
     public void transferirMesa();

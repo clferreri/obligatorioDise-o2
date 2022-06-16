@@ -20,7 +20,6 @@ public class UsuarioMozo extends Usuario {
         this.telefono = telefono;
     }
 
-
     @Override
     public boolean equals(Object obj) {
         return this.getUsuario().equals(((UsuarioMozo)obj).getUsuario());

@@ -20,6 +20,7 @@ public class SistemaRestaurante {
     private ArrayList<UnidadProcesadora> unidadesProcesadoras;
     private ArrayList<Servicio> servicios;
     private ArrayList<Cliente> clientes;
+    private ArrayList<Transferencia> transferencias;
 
     private SistemaRestaurante() {
         mesas = new ArrayList();
@@ -27,6 +28,7 @@ public class SistemaRestaurante {
         productos = new ArrayList();
         unidadesProcesadoras = new ArrayList();
         this.clientes = new ArrayList<Cliente>();
+        this.transferencias = new ArrayList<Transferencia>();
     }
 
     static SistemaRestaurante getInsancia() {
@@ -210,6 +212,20 @@ public class SistemaRestaurante {
         return null;
     }
     
+    public ArrayList<UsuarioMozo> getMozosDisponiblesTransferencia(UsuarioMozo mozo)
+    {
+        ArrayList<UsuarioMozo> mozos = SistemaUsuarios.getInstancia().mozosEnLinea(mozo);
+        ArrayList<UsuarioMozo> mozosDisponibles = new ArrayList<UsuarioMozo>();
+        for(UsuarioMozo mo : mozos)
+        {   
+            if(this.getMesasAsignadas(mo).size() < 5){
+                mozosDisponibles.add(mo);
+            }
+        }
+        
+        return mozosDisponibles;
+    }
+    
     // METODOS USADOS SOLO EN LA CARGA DE DATOS (podrian usarse si se pidiera un sistema de altas)  
     public void agregarMesa(Mesa mesa)
     {
@@ -229,6 +245,20 @@ public class SistemaRestaurante {
     public void agregarUnidadProcesadora(UnidadProcesadora unidad)
     {
         this.unidadesProcesadoras.add(unidad);
+    }
+    
+    public boolean transferirMesa(Mesa mesa, UsuarioMozo mozoOrigen, UsuarioMozo mozoDestino) throws FindMesaException
+    {
+        Mesa me = this.obtenerMesa(mesa.getNumero());
+        
+        if(me == null){
+            throw new FindMesaException();
+        }
+        
+        this.transferencias.add(new Transferencia(mozoOrigen, mozoDestino, mesa));
+        
+        
+        return true;
     }
   
 }
